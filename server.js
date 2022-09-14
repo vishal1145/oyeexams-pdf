@@ -158,7 +158,7 @@ app.post("/get-pdf", async (req, res) => {
       reqPath, { encoding: 'utf8', flag: 'r' })
     await page.setContent(bufcontent, {
       // waitUntil: 'domcontentloaded',
-      waitUntil: networkidle0
+      waitUntil: 'networkidle0'
     })
     await page.pdf({
       format: 'A4',
