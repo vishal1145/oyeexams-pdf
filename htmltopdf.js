@@ -3,7 +3,7 @@ const router = express.Router();
 const puppeteer = require('puppeteer');
 var fs = require("fs");
 const path = require('path')
-router.post('/html-to-pdf', async (req, res) => {
+router.get('/html-to-pdf', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       headless: true

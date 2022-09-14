@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const puppeteer = require('puppeteer');
 const cors = require('cors')
 const axios = require("axios");
-const locateChrome = require('locate-chrome');
 const port = process.env.PORT || 3500;
 const app = express();
 app.use(bodyParser.json())
@@ -148,30 +147,9 @@ app.post("/get-pdf", async (req, res) => {
   fs.writeFileSync("abc.html", content);
 
   try {
-    const PUPPETEER_OPTIONS = {
-      headless: true,
-      args: [
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        '--disable-setuid-sandbox',
-        '--no-first-run',
-        '--no-sandbox',
-        '--no-zygote',
-        '--single-process',
-        "--proxy-server='direct://'",
-        '--proxy-bypass-list=*',
-        '--deterministic-fetch',
-      ],
-    };
-    // const executablePath = await new Promise(resolve => locateChrome(arg => resolve(arg)));
     const browser = await puppeteer.launch({
-      // args: ['--no-sandbox', '--disable-setuid-sandbox'],
       executablePath: '/usr/bin/google-chrome'
     })
-    // PUPPETEER_OPTIONS
-    // headless: true,
-    // executablePath: '/usr/bin/chromium-browser'
-    // })
     const page = await browser.newPage()
     let reqPath = path.join(__dirname, "/abc.html");
     const bufcontent = fs.readFileSync(
@@ -194,6 +172,9 @@ app.post("/get-pdf", async (req, res) => {
     console.log(error);
   }
 });
+
+const htmlToPdf = require('./htmltopdf')
+app.use('/convert', htmlToPdf)
 
 app.listen(port, () => {
   console.log("Listening to port", port);

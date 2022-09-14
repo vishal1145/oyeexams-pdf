@@ -16,7 +16,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.17.2",
-    "locate-chrome": "^0.1.1",
     "puppeteer": "^13.4.1"
   }
 }
