@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const puppeteer = require('puppeteer');
 const cors = require('cors')
 const axios = require("axios");
+const locateChrome = require('locate-chrome');
 const port = process.env.PORT || 3500;
 const app = express();
 app.use(bodyParser.json())
@@ -162,8 +163,10 @@ app.post("/get-pdf", async (req, res) => {
         '--deterministic-fetch',
       ],
     };
+    const executablePath = await new Promise(resolve => locateChrome(arg => resolve(arg)));
     const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      // args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath
     })
     // PUPPETEER_OPTIONS
     // headless: true,
