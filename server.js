@@ -167,9 +167,11 @@ app.post("/get-pdf", async (req, res) => {
     })
     // await browser.close()
     const pdfPath = __dirname + '/pdfFile.pdf'
-    const pdfFile = fs.readFileSync(pdfPath, { encoding: 'base64' });
-    // res.contentType("application/pdf");
-    res.send(pdfFile)
+    setTimeout(() => {
+      const pdfFile = fs.readFileSync(pdfPath, { encoding: 'base64' });
+      // res.contentType("application/pdf");
+      res.send(pdfFile)
+    }, 3000);
   } catch (error) {
     console.log(error);
   }
