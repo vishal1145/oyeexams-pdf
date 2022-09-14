@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const puppeteer = require('puppeteer');
 var fs = require("fs");
-const path = require('path')
+const path = require('path');
 router.get('/html-to-pdf', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       // headless: true
-      executablePath: '/usr/bin/google-chrome-stable' //google-chrome'
+      executablePath: '/usr/bin/google-chrome'
     })
     const page = await browser.newPage()
     let reqPath = path.join(__dirname, "/abc.html");
@@ -27,8 +27,8 @@ router.get('/html-to-pdf', async (req, res) => {
         })
         // await browser.close()
         const pdfPath = __dirname + '/pdfFile.pdf'
-        var pdfFile = fs.readFileSync(pdfPath);
-        res.contentType("application/pdf");
+        var pdfFile = fs.readFileSync(pdfPath, { encoding: 'base64' });
+        // res.contentType("application/pdf");
         res.send(pdfFile)
       })
   } catch (error) {
