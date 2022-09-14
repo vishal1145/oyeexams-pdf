@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        p {
+            margin: 0px 0px 0px 0px;
+        }
+
+        table,
+        tr,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table .imageandname {
+            border: none;
+        }
+
+        .main {
+            font-family: calibri;
+            margin: 2% 5% 2% 5%;
+        }
+
+        .headers {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .heads {
+            margin-left: 1rem !important;
+            margin-bottom: 1rem !important;
+            flex: 0 0 25%;
+            max-width: 25%;
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+
+        .header1 {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            margin-bottom: 3rem !important;
+            flex: 0 0 50%;
+            max-width: 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .headTitle {
+            margin-block-start: 0em;
+            font-family: calibri;
+            text-align: center;
+            color: #3a5077;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .address {
+            color: #3a5077;
+            font-family: calibri;
+            font-size: 15px;
+            text-align: center !important;
+            padding-left: 1rem !important;
+        }
+
+        .testexamone {
+            border-top: 1px solid #d1dae6;
+            height: auto;
+            margin: 0 !important;
+            margin-top: 0px !important;
+            margin-right: 0px !important;
+            margin-bottom: 0px !important;
+            margin-left: 0px !important;
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .testexamtwo {
+            margin-bottom: 0.5rem !important;
+            margin-top: 0.5rem !important;
+            flex: 0 0 41.666667%;
+            max-width: 41.666667%;
+        }
+
+        .standard9 {
+            color: #3a5077;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 21px;
+            margin: 0 !important;
+            text-transform: capitalize;
+        }
+
+        .standard {
+            margin-bottom: 0.5rem !important;
+            margin-top: 0.5rem !important;
+            flex: 0 0 25%;
+            max-width: 100%;
+        }
+
+        .subject {
+            margin-bottom: 0.5rem !important;
+            margin-top: 0.5rem !important;
+            flex: 0 0 33.3333%;
+            max-width: 33.3333%;
+        }
+
+        .studentnameone {
+            height: auto;
+            margin: 0 !important;
+            margin-top: 0px !important;
+            margin-right: 0px !important;
+            margin-bottom: 0px !important;
+            margin-left: 0px !important;
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .section {
+            color: #3a5077;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 21px;
+            text-align: left !important;
+            margin: 0 !important;
+            float: left;
+        }
+
+        .rollno {
+            border-bottom: 1px dashed grey;
+            float: left;
+            height: 21px;
+            margin: 0 2px;
+        }
+
+        .questionone {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: 0px;
+            margin-left: -15px;
+            justify-content: flex-end !important;
+            border-bottom: 1px solid #dee2e6 !important;
+            border-bottom: 1px solid #d1dae6;
+        }
+
+        .questiontwo {
+            height: 27px;
+            border: 1px solid #d1dae6;
+            border-radius: 2px;
+            background-color: #fff;
+            text-align: center !important;
+            margin-bottom: 0.25rem !important;
+            margin-top: 0.25rem !important;
+            border: 1px solid #d1dae6;
+            font-size: 18px;
+            color: #3a5077;
+            font-weight: 600;
+        }
+
+        .questionstyle {
+            float: left;
+            color: #000;
+            font-size: 18px;
+            line-height: 26px;
+            width: 95%;
+            margin-top: 20px;
+            margin-left: 0px;
+            padding-left: 0px;
+            max-width: 90%;
+        }
+
+        .answerstyle {
+            /* margin-top: 0.25rem !important; */
+            width: 100%;
+            font-size: 18px;
+            float: left;
+        }
+
+        .questionclass {
+            float: left;
+            font-size: 18px;
+            line-height: 26px;
+            font-weight: 700;
+        }
+
+        .questionsstyle {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100% !important;
+            max-width: 95%;
+            font-size: 18px;
+            line-height: 26px !important;
+            color: #000;
+            font-size: 18px;
+            line-height: 26px;
+        }
+
+        .optionstyle {
+            font-weight: normal;
+            padding-left: 0.005rem !important;
+            padding-right: 0.005rem !important;
+        }
+
+        .marks {
+            font-weight: 700;
+            width: 10%;
+            background-color: #ffffff;
+            float: right !important;
+            margin-top: 20px;
+        }
+
+        .ansstyle {
+            color: #000;
+            min-width: 35px;
+            font-size: 18px;
+            line-height: 26px !important;
+            font-weight: 700;
+        }
+
+        .explaination {
+            width: 92%;
+            float: left;
+            text-align: justify;
+            padding-left: 2rem;
+            padding-top: 0.5rem;
+        }
+
+        .newoption {
+            font-weight: 700;
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+
+        .optiontop {
+            margin: 0 auto 0 0;
+            min-width: 25%;
+        }
+
+        .optiontop p {
+            display: inline;
+        }
+
+        /* .questionstyle {
+        margin: 0 auto 0 0;
+        min-width: 25%;
+      } */
+
+        .questionclass p {
+            display: inline;
+        }
+
+        .answerlast {
+            width: 100%;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .headinglast {
+            margin: 0 0.25rem !important;
+        }
+
+        .markone {
+            text-align: left !important;
+        }
+
+        .mark {
+            margin-left: 0.25rem !important;
+        }
+
+        .tablestyle {
+            margin-top: 5px;
+            width: calc(97% - 5rem);
+        }
+
+        ol {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+        integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+        integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+        crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+        integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
+</head>
+
+<body>
+    <!--  -->
+    <div style="margin-left: 2%; margin-right: 2%; margin-top: 2%">
+        <div _ngcontent-kiq-c16="" style="
+          display: -webkit-box;
+          flex-wrap: wrap;
+          margin-right: -15px;
+          margin-left: -15px;
+        ">
+            <div _ngcontent-kiq-c16="" style="
+            margin-left: 1rem !important;
+            margin-bottom: 0px !important;
+            flex: 0 0 20%;
+            max-width: 20%;
+            flex: 0 0 25%;
+            max-width: 20%;
+          ">
+                <!----><img _ngcontent-kiq-c16="" height="70px;" width="130px" src="undefined"
+                    class="ng-star-inserted" />
+            </div>
+            <div _ngcontent-kiq-c16="" style="
+            padding-left: 5rem !important;
+            padding-right: 1rem !important;
+            margin-bottom: 3rem !important;
+            flex: 0 0 50%;
+            max-width: 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+          ">
+                <h2 _ngcontent-kiq-c16="" style="
+              color: #3a5077;
+              font-family: calibri;
+              font-size: 20px;
+              font-weight: 600;
+              text-align: center !important;
+              padding-left: 1rem !important;
+            ">
+                    <span _ngcontent-kiq-c16="">Shishukunj Institute Indore Madhya Pradesh
+                    </span>
+                </h2>
+                <p _ngcontent-kiq-c16="" style="
+              color: #3a5077;
+              font-family: calibri;
+              font-size: 15px;
+              text-align: center !important;
+              padding-left: 1rem !important;
+            ">
+                    Addresss Test
+                </p>
+            </div>
+        </div>
+
+        <div style="border-top: 1px solid #d1dae6">
+            <table style="
+            color: #3a5077;
+            font-size: 16px;
+            font-weight: 500;
+            border: 0;
+            width: 100%;
+          ">
+                <tr style="border: none">
+                    <td style="border: none">Test / Exam Name: tes123</td>
+
+                    <td style="border: none">Standard: 9TH</td>
+                    <td style="border: none">Subject: SCIENCE</td>
+                </tr>
+                <tr style="border: none">
+                    <td style="border: none;">Student Name: <span style=" border-bottom: 1px dashed #999;min-width: 120px;
+                        display: inline-block;">undefined</span></td>
+                    <td style="border: none">Section: <span style=" border-bottom: 1px dashed #999;min-width: 120px;
+                        display: inline-block;"> undefined </span></td>
+                    <td style="border: none">Roll No.: <span style=" border-bottom: 1px dashed #999;min-width: 120px;
+                        display: inline-block;">undefined</span> </td>
+                </tr>
+            </table>
+            <table style="
+            color: #3a5077;
+            font-size: 16px;
+            font-weight: 500;
+            margin-left: 50% !important;
+            margin-top: 1%;
+          ">
+                <tr style="border: 1px solid #3a5077">
+                    <td style="
+                border: 1px solid #3a5077;
+                padding-left: 5px;
+                padding-right: 5px;
+              ">
+                        Questions: 31
+                    </td>
+                    <td style="
+                border: 1px solid #3a5077;
+                padding-left: 5px;
+                padding-right: 5px;
+              ">
+                        Time: 60 Mins
+                    </td>
+                    <td style="
+                border: 1px solid #3a5077;
+                padding-left: 5px;
+                padding-right: 5px;
+              ">
+                        Negative Marks: 0
+                    </td>
+                    <td style="
+                border: 1px solid #3a5077;
+                padding-left: 5px;
+                padding-right: 5px;
+              ">
+                        Marks: 132
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--  -->
+
+
+
+        <div style="border-top: 1px solid #d1dae6; margin-top: 1%; page-break-after: always;display:block; clear:both;">
+            <div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 1.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Give the formulate of the compounds formed from the following sets of elements:</span></span></p>
+
+<ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Calcium and fluorine.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Hydrogen and sulphur.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Nitrogen and hydrogen.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Carbon and chlorine.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Sodium and oxygen.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Carbon and oxygen.</span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">6</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\ \text{Element}:\ \ \ \ \ \text{Ca}\ \ \ \ \ \ \  \ \ \ \text{F}\\ {\text{Valencies}}:\ \ +2\ \ \ \ \ \ -2\)</span></span></span></li>
+</ol>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">Thus, the resulting compound is CaF<sub>2</sub></span></span></p>
+
+<ol start="2" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\ \text{Element}:\ \ \ \ \ \ \ \text{H}\ \ \ \ \ \ \  \  \ \ \text{S}\\ {\text{Valencies}}:\ \ +1\ \ \ \ \ -2\)</span></span></span></li>
+</ol>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">Thus, the resulting compund is H<sub>2</sub>S</span></span></p>
+
+<ol start="3" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\ \text{Element}:\ \ \ \ \ \ \  \text{N}\ \ \ \ \ \ \  \ \ \ \text{H}\\ {\text{Valencies}}:\ \ -3\ \ \ \ \ \ +1\)</span></span></span></li>
+</ol>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">Thus, the resulting compound is NH<sub>3</sub></span></span></p>
+
+<ol start="4" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\ \text{Element}:\ \ \ \ \ \  \text{C}\ \ \ \ \ \ \  \ \ \ \ \text{Cl}\\ {\text{Valencies}}:\ \ +4\ \ \ \ \ \ -1\)</span></span></span></li>
+</ol>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">Thus, the resulting compound is CCl<sub>4</sub></span></span></p>
+
+<ol start="5" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\ \text{Element}:\ \ \ \ \ \text{Na}\ \ \ \ \ \ \  \ \ \ \text{O}\\ {\text{Valencies}}:\ \ +1\ \ \ \ \ \ -2\)</span></span></span></li>
+</ol>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">Thus, the resulting compound is Na<sub>2</sub>O</span></span></p>
+
+<ol start="6" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\ \text{Element}:\ \ \ \ \ \ \ \text{C}\ \ \ \ \ \ \   \ \ \ \text{O}\\ {\text{Valencies}}:\ \ +4\ \ \ \  \ \ -2\)</span></span></span></li>
+</ol>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">Thus, the resulting compound is CO<sub>2</sub></span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 2.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">The atom of an element X contains 17 protons, 17 electrons and 18 neutrons whereas the atom of an element Y contains 11 protons, 11 electrons and 12 neutrons.</span></span></p>
+
+<ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">What type of ion will be formed by an atom of element X? Write the symbol of ion formed.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">What will be the number of (i) protons (ii) electrons, and (iii) neutrons, in the ion formed from X?</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">What type of ion will be formed by an atom of element Y? Write the symbol of ion formed.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">What will be the number of (i) protons (ii) electrons, and (iii) neutrons, in the ion formed from Y?</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">What is the atomic mas of (i) X, and (ii) Y?</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">What could the elements X and Y be?</span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">6</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><ol start="1" style="list-style-type: lower-alpha;">
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana">Element X consists of 17 protons and electrons and 18 neutrons. Element X will readily accept an electron to form a negatively charged anion.Symbol of the negatively charged X is X<sup>-</sup>.</span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>In the ion formed by X:</strong></span></span></p>
+	</li>
+</ol>
+
+<ul style="margin-left: 40px;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Number of protons = 17</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Number of electrons = 18</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Number of neutrons = 18</span></span></li>
+</ul>
+
+<ol start="3" style="list-style-type: lower-alpha;">
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana">Elem</span></span><span style="font-size:14px"><span style="font-family:verdana">ent Y consists of 11 protons and electrons and 12 neutrons. Element Y will readily lose an electron to form a positively charged cation.&nbsp;</span></span><span style="font-size:14px"><span style="font-family:verdana">Symbol of the positively charged Y is Y<sup>+</sup>.</span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>In the ion formed by Y:</strong></span></span></p>
+	</li>
+</ol>
+
+<ul style="margin-left: 40px;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Number of protons = 11</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Number of electrons = 10</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Number of neutrons = 12</span></span></li>
+</ul>
+
+<ol start="5" style="list-style-type: lower-alpha;">
+	<li>&nbsp;</li>
+</ol>
+
+<ul style="margin-left: 40px;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Atomic mass of X = number of protons of X + number of neutrons of X = 17 + 18 = 35u</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Atomic mass of Y = number of protons of Y + number of neutrons of Y = 11 + 12 = 23u</span></span></li>
+</ul>
+
+<ol start="6" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Atomic number of X is 17; therefore, element X is chlorine.</span></span></li>
+</ol>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">Atomic number of Y is 11; therefore, element Y is sodium.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 3.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Give the chemical formulae for the following compounds and compute the ratio by mass of the combining elements in each one of them.</span></span></p>
+
+<ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Ammonia</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Carbon monoxide</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Hydrogen chloride</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Aluminium fluoride</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Magnesium sulphide</span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">5</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><table border="2" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><strong><span style="font-size:14px"><span style="font-family:verdana">S.No.</span></span></strong></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><strong><span style="font-size:14px"><span style="font-family:verdana">Compounds</span></span></strong></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><strong><span style="font-size:14px"><span style="font-family:verdana">Chemical formula</span></span></strong></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><strong><span style="font-size:14px"><span style="font-family:verdana">Ratio by mass of the combining elements</span></span></strong></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">(a)</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Ammonia</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">NH3</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">N : H = 14 : 3</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">(b)</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Carbon monoxide</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">CO</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">C : O = 12 : 16 = 3 : 4</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">(c)</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Hydrogen chloride</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">HCI</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">H : CI = 1 : 35.5</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">(d)</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Aluminium fluoride</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">AIF3</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">AI : F = 27 : 57 = 9 :19</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">(e)</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Magnesium sulphide</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">MgS</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Mg : S = 24 : 32 = 3 : 4</span></span></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 4.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">If 1 gram of sulphur dioxide contains x molecules, how many molecules will be present in 1 gram of oxygen?</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">(S = 32u; O = 16u)</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">5</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">Given,</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of sulphur dioxide = 1g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">We know that equal moles of all substances contain equal number of molecules. (1 mole of all substances contains 6.022 × 10<sup>23</sup>&nbsp;molecules).</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, the ratio of molecules in sulphur dioxide and oxygen will be same as the ratio of their moles.</span></span></p>
+
+<p><strong><span style="font-size:14px"><span style="font-family:verdana">Number of moles in 1g of sulphur dioxide:</span></span></strong></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">1 mole of SO<sub>2</sub>&nbsp;= (1 × 32) + (2 × 16) = 64g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">64g of SO<sub>2</sub>&nbsp;= 1 mole of SO<sub>2</sub></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, 1g of </span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{SO}_2 = \frac{1}{64}\)</span></span></span><span style="font-size:14px"><span style="font-family:verdana"> moles of SO<sub>2</sub></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Now, </span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\frac{1}{64}\)</span></span></span><span style="font-size:14px"><span style="font-family:verdana"> moles of SO<sub>2</sub>&nbsp;contain x molecules (given). Since equal number of molecules are present in equal moles of all substances, <span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\frac{1}{64}\)</span></span></span> moles of oxygen will also contain x number of molecules.</span></span></p>
+
+<p><strong><span style="font-size:14px"><span style="font-family:verdana">Number of moles in 1g of oxygen:</span></span></strong></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">1 mole of O<sub>2</sub>&nbsp;= 2 × 16 = 32g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">32g of O<sub>2</sub> = 1 mole of O<sub>2</sub></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, 1g of </span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{O}_2 = \frac{1}{32}\)</span></span></span><span style="font-size:14px"><span style="font-family:verdana"> moles of O<sub>2</sub></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">We have already stated that <span style="font-size:14px"><span style="font-family:verdana"><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\frac{1}{64}\)</span></span></span></span></span> moles of oxygen contain x molecules. Therefore,</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:18px"><span class="equation">\(\frac{1}{32}\)</span></span></span><span style="font-size:14px"><span style="font-family:verdana"> mole of oxygen will contain </span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(=\frac{\text{x}\ \times\ 64}{32}=2\text{x}\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, 1gm of oxygen consists of 2x number of molecules.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 5.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Name the following compounds. Also write the symbols/ formulae of the ions present in them:</span></span></p>
+
+<ol start="1" style="list-style-type:lower-alpha">
+	<li><span style="font-size:14px"><span style="font-family:verdana">CuSO<sub>4</sub></span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">(NH<sub>4</sub>)<sub>2</sub>SO<sub>4</sub></span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Na<sub>2</sub>O</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Na<sub>2</sub>CO<sub>3</sub></span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">CaCl<sub>2</sub></span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">5</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><ol start="1" style="list-style-type:lower-alpha">
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>CuSO<sub>4</sub>:</strong> Copper sulphate; Cu<sup>+</sup><sub>2</sub> and SO<sub>4</sub><sup>2-</sup></span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>(NH<sub>4</sub>)2SO<sub>4</sub>:</strong> Ammonium sulphate; NH<sub>4</sub><sup>+</sup> and SO<sub>4</sub><sup>2-</sup></span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>Na<sub>2</sub>O:</strong> Sodium oxide; Na<sup>+</sup> and O<sub>2-</sub></span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>Na<sub>2</sub>CO<sub>3</sub>:</strong> Sodium carbonate; Na<sup>+</sup> and CO<sub>4</sub><sup>2-</sup></span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>CaCl<sub>2</sub>:</strong> Calcium chloride; Ca<sup>2+</sup> and Cl<sup>-</sup></span></span></p>
+	</li>
+</ol>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 6.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">How is an ion different from an atom? How is cation different from anion?</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">5</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><table border="2" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
+	<thead>
+		<tr>
+			<th style="text-align: left; vertical-align: top;">
+			<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana"><strong>BASIS FOR COMPARISON</strong></span></span></div>
+			</th>
+			<th style="text-align: left; vertical-align: top;">
+			<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana"><strong>CATION</strong></span></span></div>
+			</th>
+			<th style="text-align: left; vertical-align: top;">
+			<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana"><strong>ANION</strong></span></span></div>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Meaning</span></span></div>
+			</td>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">An atom or molecule having more number of protons than electrons and are positively charged is called cation.</span></span></div>
+			</td>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">An atom or molecule having more number of electrons than protons and are negatively charged is called anion.</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Charge</span></span></div>
+			</td>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">These are positively charged.</span></span></div>
+			</td>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">These are negatively charged.</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Formed of</span></span></div>
+			</td>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Cation are formed from metal atoms.</span></span></div>
+			</td>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Anion are formed from non-metals atoms.</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Compounds formed</span></span></div>
+			</td>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Cation combine with the anions to form the ionic bonds.</span></span></div>
+			</td>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Anion combine with the cations to form the ionic bonds.&nbsp;</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Electrolysis</span></span></div>
+			</td>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Cation always move towards the cathode, which produces the negative charge.</span></span></div>
+			</td>
+			<td style="text-align: left; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Anion always move towards the anode, which produces the positive charge.</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div><span style="font-size:14px"><span style="font-family:verdana">Examples</span></span></div>
+			</td>
+			<td>
+			<div><span style="font-size:14px"><span style="font-family:verdana">Iron (Fe2+), Sodium (Na+), Lead (Pb2+).</span></span></div>
+			</td>
+			<td>
+			<div><span style="font-size:14px"><span style="font-family:verdana">Fluoride (F-), Bromide (Br-), Iodide (I-), Nitride (N3-) and Hydride (H-).</span></span></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 7.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">The mass of one atom of an element X is 2.0 × 10<sup>-23</sup>g.</span></span></p>
+
+<ol start="1" style="list-style-type: lower-roman;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Calculate the atomic mass of element X.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">What could element X be?</span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">Given,</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of an atom of element X = 2.0 × 10<sup>-23</sup>g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">We know that the mass of an atom of a substance is equal to the mass of 1 mole of that substance. 1 mole of a substance consists of 6.022 × 10<sup>23</sup>&nbsp;atoms; therefore, the mass of an atom of a substance is equal to the mass of 6.022 × 10<sup>23</sup>&nbsp;atoms.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, to calculate the atomic mass of element X, we need to calculate the mass of 6.022 × 10<sup>23</sup>atoms of X.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of 1 atom of X = 2.0 × 10<sup>-23</sup></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of 6.022 × 10<sup>23</sup>&nbsp;atoms of X = 6.022 × 10<sup>23</sup>&nbsp;× 2.0 × 10<sup>-23</sup>&nbsp;= 12u</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, the atomic mass of element X is 12u.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Carbon has an atomic mass of 12u; therefore,&nbsp; element X is carbon.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 8.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Fill in the missing data in the following table.</span></span></p>
+
+<table border="2" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
+	<tbody>
+		<tr>
+			<td style="text-align: center;"><strong><span style="font-size:14px"><span style="font-family:verdana">Species&nbsp;Property</span></span></strong></td>
+			<td style="text-align: center;"><strong><span style="font-size:14px"><span style="font-family:verdana">H<sub>2</sub>O</span></span></strong></td>
+			<td style="text-align: center;"><strong><span style="font-size:14px"><span style="font-family:verdana">CO<sub>2</sub></span></span></strong></td>
+			<td style="text-align: center;"><strong><span style="font-size:14px"><span style="font-family:verdana">Na atom</span></span></strong></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana"><strong>MgCl<sub>2</sub></strong></span></span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">No. of moles</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">2</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">—</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">—</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">0.5</span></span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">No. of particles</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">—</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">3.011 × 10<sup>23</sup></span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">—</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">—</span></span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">Mass</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">36g</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">—</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">115g</span></span></td>
+			<td style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana">—</span></span></td>
+		</tr>
+	</tbody>
+</table>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><table border="2" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana"><strong>Species&nbsp;Property</strong></span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana"><strong>H<sub>2</sub>O</strong></span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana"><strong>CO<sub>2</sub></strong></span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana"><strong>Na atom</strong></span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana"><strong>MgCl<sub>2</sub></strong></span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">No. of moles</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">2</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">0.5</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">5</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">0.5</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">No. of particles</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">1.2044&nbsp;× 10<sup>24</sup></span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">3.011 × 10<sup>23</sup></span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">3.011 × 10<sup>24</sup></span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">3.011&nbsp;× 10<sup>23</sup></span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Mass</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">36g</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">22g</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">115g</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">47.5g</span></span></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Number of particles of H<sub>2</sub>O = 6.022&nbsp;× 10<sup>23</sup> = 1.2044&nbsp;× 10<sup>24</sup></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">No. of moles of&nbsp;</span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{CO}_2 = \frac{(3.011\times10^{23})}{(6.022\times10^{23})}=0.5\text{mol}\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Molar mas of CO<sub>2</sub> = atomic mass of C + (2&nbsp;× atomic mass O) = 12 + (2&nbsp;× 16) = 44g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of 0.5 moles of CO<sub>2</sub> = 0.5&nbsp;× 44g = 22g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Number of moles&nbsp;of Na atom&nbsp;</span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(=\frac{115}{23}=5\text{mol}\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Number of particlesw of Na atom = 5&nbsp;× 6.022&nbsp;× 10<sup>23</sup> = 3.011&nbsp;× 10<sup>24</sup></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Molar mass of MgCl<sub>2</sub> = atomic mass of Mg + (2&nbsp;× atomic mass of Cl) = 24 + (2&nbsp;× 35.5) = 95g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of 0.5mol of MgCl<sub>2</sub> = 0.5&nbsp;× 95g = 47.5g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Number of particles of MgCl<sub>2</sub> = 0.5&nbsp;× 6.022&nbsp;× 10<sup>23</sup> = 3.011&nbsp;× 10<sup>23</sup></span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 9.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">The mass of one molecule of a substance is 4.65 × 10<sup>-23</sup>g. What is its molecular mass? What could this substance be?</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">Given,</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of one molecule of a substance = 4.65 × 10<sup>-23</sup></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">We know that the mass of a molecule of a substance is equal to the mass of 1 mole of that</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">substance. 1 mole of a substance consists of 6.022 × 10<sup>23&nbsp;</sup>molecules; therefore, the mass of a molecule of a substance is equal to the mass of 6.022 × 10<sup>23</sup>&nbsp;molecules.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, to calculate the molecular mass of the substance, we need to calculate the mass of 6.022 × 10<sup>23</sup>&nbsp;molecules of that substance.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of 1 molecule of the substance = 4.65 × 10<sup>-23</sup></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of 6.022 × 10<sup>23&nbsp;</sup>molecules of the substance = 6.022 × 10<sup>23</sup>&nbsp;× 4.65 × 10<sup>-23</sup>&nbsp;= 28g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, molecular mass of the substance is 28u.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Nitrogen has a molecular mass of 28u, therefore, the substance is nitrogen.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 10.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Which has more number of atoms?</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">100g of N<sub>2</sub>&nbsp;or 100g of NH<sub>3</sub></span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-family:verdana"><span style="font-size:14px">Molar mass of N<sub>2</sub> = 2&nbsp;× 14 = 28g</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px"><span style="font-size:18px"><span class="equation">\(\because\)</span></span>&nbsp;28g of N<sub>2</sub> has number of molecules = 6.022&nbsp;× 10<sup>23</sup></span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px"><span style="font-size:18px"><span class="equation">\(\therefore\)</span></span>&nbsp;100g of N<sub>2</sub> has number of molecules&nbsp;</span><span style="font-size:18px"><span class="equation">\(=\frac{6.022\times10^{23}\times100}{28}=2.1\times10^{24}\)</span></span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">Atoms in 100g of N<sub>2</sub> = 2.1&nbsp;× 10<sup>24</sup>&nbsp;× 2</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">= 42&nbsp;× 10<sup>24</sup> atoms</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">Similarly, molar mass of NH<sub>3</sub> = 14 + 3&nbsp;× 1 = 17g</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px"><span style="font-size:14px"><span style="font-size:18px"><span class="equation">\(\because\)</span></span></span>&nbsp;17g NH<sub>3</sub> has number of molecules = 6.022&nbsp;× 10<sup>23</sup></span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px"><span style="font-size:18px"><span class="equation">\(\therefore\)</span></span>&nbsp;100g NH<sub>3</sub> has number of molecules&nbsp;<span style="font-size:18px"><span class="equation">\(=\frac{6.022\times10^{23}\times100}{17}=3.54\times10^{24}\)</span></span></span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">Atoms in 100g of NH3 = 3.54&nbsp;× 10<sup>24</sup>&nbsp;× 4 = 1.416&nbsp;× 10<sup>25</sup></span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">Thus, 100g of NH<sub>3</sub> has more number of atoms.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 11.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Which contains more molecules, 10g of sulphur dioxide (SO<sub>2</sub>) or 10g of oxygen (O<sub>2</sub>)?</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">(Atomic masses: S = 32u; O = 16u)</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">Given,</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of sulphur dioxide = 10g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Molar mass of sulphur dioxide = (1 × 32) + (2 × 16) = 64g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">We know that 64g of sulphur dioxide contain 6.022 × 10<sup>23</sup>&nbsp;molecules.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Number of molecules in 64g&nbsp;sulphur dioxide = 6.022 × 10<sup>23</sup></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Number of molecules in 10g&nbsp;sulphur dioxide&nbsp;</span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(= \frac{10\ \times\ 6.022\ \times\ 10^{23}}{64}\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, the number of molecules in 10g sulphur dioxide is 9.4× 10<sup>22</sup></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Given,</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Mass of oxygen = 10g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Molar mass of oxygen molecule = (2 × 16) = 32g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Number of molecules in 32g oxygen = 6.022 × 10<sup>23</sup></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Number of molecules in 10g oxygen&nbsp;<span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(= \frac{10\ \times\ 6.022\ \times\ 10^{23}}{32}\)</span></span></span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, the number of molecules in 10g&nbsp;oxygen is 18.8 × 10<sup>22</sup></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">It is clear that the number of atoms in 10g&nbsp;oxygen is greater than that in 10g&nbsp;sulphur dioxide.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 12.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">State the law of conservation of mass. Give one example to illustrate this law.</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana"><strong>Law of conservation of mass by LAVOISIER states that:</strong>&nbsp;"Mass can neither be created nor be destroyed&nbsp;in a chemical reaction". So, in a chemical reaction, the total mass of reactants must be equal to the total mass of products.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana"><strong>For example:</strong> When calcium carbonate is heated, a chemical reaction takes place to form calcium oxide and calcium carbonate. If 100gms of calcium carbonate is decomposed completely, then 56gms of calcium oxide and 44gms of carbon dioxide are formed.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana"><strong>In the above example:</strong> The total mass of products = 56gms (CaO) + 44gms (CO<sub>2</sub>) = 100gms.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">As total mass of products is equal to the total mass of reactant so, the law of conservation of mass is satisfied.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 13.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">What weight of oxygen gas will contain the same number of molecules as 56g of nitrogen gas?</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">(O = 16u; N = 14u)</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">Mass of nitrogen gas = 56g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">We know that equal moles of all substances contain equal number of molecules. (1 mole of all substances contains 6.022 × 10<sup>23</sup>&nbsp;molecules).</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">The first step will be to convert 56g&nbsp;nitrogen gas into moles.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">1 mole&nbsp;nitrogen gas N<sub>2&nbsp;</sub>= 28g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">28g nitrogen = 1 mole</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">56g nitrogen = 2 moles</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Since, equal moles of all substances contain equal number of molecules, 2 moles of nitrogen will have the same number of molecules as 2 moles of oxygen.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">The next step will be to find the mass of 2 moles of oxygen in grams.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">1 mole of oxygen = 32g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">2 moles of oxygen = 32 × 2 = 64g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, 64g&nbsp;oxygen will contain the same number of molecules as 56g nitrogen gas.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 14.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Compute the difference in masses of 10<sup>3</sup>&nbsp;moles each of magnesium atoms and magnesium ions. (Mass of an electron =9.1 ×&nbsp;10<sup>-31</sup>kg)</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-family:verdana"><span style="font-size:14px">10<sup>3</sup> moles of Mg atoms = 10<sup>3</sup>&nbsp;× 6.022&nbsp;× 10<sup>23</sup></span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">= 6.022&nbsp;× 10<sup>26</sup>Mg atoms</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">10<sup>3</sup> moles of Mg<sup>2+</sup> ions = 10<sup>3</sup>&nbsp;× 6.022&nbsp;× 10<sup>23</sup></span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">= 6.022&nbsp;× 10<sup>26</sup>Mg<sup>2+</sup> ions</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">One Mg<sup>2+</sup> ion is formed from one Mg atom by loss of 2 electrons,</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">As Mg&nbsp;→ Mg<sup>2+</sup> + 2e<sup>-</sup> i.e.</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:18px"><span class="equation">\(\therefore\)</span></span><span style="font-size:14px">&nbsp;Difference in the mass of 6.022&nbsp;× 10<sup>26</sup>Mg atom and Mg<sup>2+</sup> ions</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">= mass of 2&nbsp;× 6.022&nbsp;× 10<sup>26</sup> electrons</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">= 2&nbsp;× 6.022&nbsp;× 1026&nbsp;× 9.1&nbsp;× 10<sup>-31</sup>kg.</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">(as mass of an electron = 9.1&nbsp;× 10<sup>-31</sup>kg)</span></span></p>
+
+<p><span style="font-family:verdana"><span style="font-size:14px">= 109.6004&nbsp;× 10<sup>-5</sup>kg = 1.096&nbsp;× 10<sup>-3</sup>kg = 1.096g</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 15.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">How many grams of magnesium will have the same number of atoms as 6 grams of carbon?</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">(Mg = 24u; C = 12u)</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">Mass of carbon = 6g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">We know that equal moles of all substances contain equal number of atoms (1 mole of all substances contains 6.022 × 10<sup>23&nbsp;</sup>atoms).</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">The first step will be to convert 6g carbon into moles.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">1 mole of carbon = 12g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">12g&nbsp;carbon = 1 mole</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, 6g carbon = 0.5 moles</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Since, equal moles of all substances contain equal number of atoms, 0.5 moles of carbon will have the same number of atoms as present in 0.5 moles of magnesium.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">The next step will be to find out the mass of 0.5 moles of magnesium in grams.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">1 mole of magnesium = 24g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">0.5 moles of magnesium = 24 × 0.5 = 12g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, 12g magnesium will contain the same number of atoms as present in 6g carbon.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 16.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">A liquid compound X of molecular mass 18u can be obtained from a number of natural sources. All the animals and plants need liquid X for their survival. When an electric current is passed through 200 grams of pure liquid X under suitable conditions, then 178 grams of gas Y and 22 grams of gas Z are produced. Gas Y is produced at the positive electrode whereas gas Z is obtained at the negative electrode. Moreover, gas Y supports combustion whereas gas Z burns itself causing explosions.</span></span></p>
+
+<ol start="1" style="list-style-type:lower-alpha">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Name (i) liquid X (ii) gas Y, and (iii) gas Z</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">What is the ratio to the mass of element Z to the mass of element Y in the liquid X?</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Which law of chemical combination is illustrated by this example?</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Name two sources of liquid X.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Gate an important use of Y in our life.</span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{X(liquid)}\xrightarrow{\ \ \ \ \ \ \ \ \ \ \ \ }\text{Y(gas)}+\text{Z(gas)}\\ \ ^{200\text{gm}} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^{178\text{gm}}\ \ \ \ \ \ \ \ ^{22\text{gm}}\)</span></span></span></p>
+
+<ol start="1" style="list-style-type:lower-alpha">
+	<li><span style="font-size:14px"><span style="font-family:verdana"><strong>Liquid X:</strong> Water.</span></span></li>
+</ol>
+
+<p style="margin-left:40px"><span style="font-size:14px"><span style="font-family:verdana"><strong>Gas Y:</strong> Oxygen.</span></span></p>
+
+<p style="margin-left:40px"><span style="font-size:14px"><span style="font-family:verdana"><strong>Gas Z:</strong> Hydrogen.</span></span></p>
+
+<ol start="2" style="list-style-type:lower-alpha">
+	<li>
+	<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\frac{\text{mass of Z}}{\text{mass of Y}}=\frac{22\text{gm}}{178\text{gm}}=1\ :\ 8\)</span></span></span></p>
+	</li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Law of constant proportion is illustrated by this example.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Two sources of liquid X– Sea, Well.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Gas Y(oxygen) is necessary for breathing.</span></span></li>
+</ol>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 17.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">One of the forms of a naturally occurring solid compound P is usually used for making the floors of houses. On adding a few drops of dilute hydrochloric acid to P, brisk effervescence are produced. When 50g of reactant P was heated strongly, than 22g of a gas Q and 28g of a solid R were produced as products. Gas Q is the same which produced brisk effervescence on adding dilute HCl to P. Gas Q is said to cause global warming whereas solid R is used for white-washing.</span></span></p>
+
+<ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">What is (i) solid P (ii) gas Q, and (iii) solid R.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">What is the total mass of Q and R obtained from 50g of P?</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">How does the total mass of Q and R formed compare with the mass of P taken?</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">What conclusion do you get from the comparison of masses of products and reactant?</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Which law of chemical combination is illustrated by the example given in this problem?</span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{P(solid)}\xrightarrow{ \ \ \ \ \ \ \ \ \ \ \ \ }\text{Q(gas)}+\text{R(solid)}\\ \ \ ^{50\text{gm}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ^{22\text{gm}}\ \ \ \ \ \ \ \ \ \ ^{28\text{gm}}\)</span></span></span></p>
+
+<ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana"><strong>Solid P:</strong> Calcium Carbonate (CaCO<sub>3</sub>)</span></span></li>
+</ol>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana"><strong>Gas Q:</strong> Carbon dioxide (CO<sub>2</sub>)</span></span></p>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana"><strong>Solid R:</strong> Calcium oxide (CaO)</span></span></p>
+
+<ol start="2" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Total mass of Q and R = 22gm + 28gm = 50gm</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Total mass of Q and R (50gm) is equal to mass of reactant (50gm).</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">The law of conservation of mass is followed, i.e. total mass of product is equal to mass of reactant.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Law of conservation of mass is illustrated by the example.</span></span></li>
+</ol>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 18.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Write the formulae of the following compounds. Also name the elements present in them.</span></span></p>
+
+<ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Water.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Ammonia.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Methane.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Sulphur dioxide.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Ethanol.</span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><ol start="1" style="list-style-type: lower-alpha;">
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>Water:</strong> H<sub>2</sub>O; Elements present are Hydrogen and Oxygen.</span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>Ammonia:</strong> NH<sub>3</sub>; Elements present are Nitrogen and Hydrogen.</span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>Methane:</strong> CH<sub>4</sub>; Elements present are Carbon and Hydrogen.</span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>Sulphur dioxide:</strong> SO<sub>2</sub>; Elements present are Sulphur and Oxygen.</span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>Ethanol:</strong> C<sub>2</sub>H<sub>5</sub>OH; Elements present are carbon, hydrogen and oxygen.</span></span></p>
+	</li>
+</ol>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 19.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">State the various postulates of Dalton’s atomic theory of matter.</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana"><strong>Postulates of Dalton's atomic theory:</strong></span></span></p>
+
+<ol start="1" style="list-style-type:lower-roman">
+	<li><span style="font-size:14px"><span style="font-family:verdana">All the matter is made up of very small particles called 'atoms'.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Atoms cannot be divided.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Atoms can neither be created nor be destroyed.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Atoms are of various kinds. There are as many kinds of atoms as are elements.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">All the atoms of a given element are identical in every respect, having the same mass, size and chemical properties.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Atoms of different elements differ in mass, size and chemical properties.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">The 'number' and 'kind' of atoms in a given compound is fixed.</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">During chemical combination, atoms of different elements combine in small whole numbers to form compounds.</span></span>&nbsp;<span style="font-size:14px"><span style="font-family:verdana">Atoms of the same elements can combine in more than one ratio to form more than one compound.</span></span></li>
+</ol>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 20.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Calculate the number of aluminium ions present in 0.051g of aluminium oxide.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">(Hint: The mass of an ion is the same as that of an atom of the same element. Atomic mass of Al = 27u)</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><h4><span style="font-size:14px"><span style="font-family:verdana">1 mole of aluminium oxide (Al<sub>2</sub>O<sub>3</sub>) = 2 × 27 + 3 × 16</span></span></h4>
+
+<h4><span style="font-size:14px"><span style="font-family:verdana">= 102g</span></span></h4>
+
+<h4><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{i.e.},102\text{g} \ \text{of} \ \text{AI}_2\text{O}_3=6.022\times10^{23} \ \text{molecules} \ \text{of} \ \text{AI}_2\text{O}_3\)</span></span></span></h4>
+
+<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{Then}, \ 0.051\text{g} \ \text{of} \ \text{AI}_2\text{O}_3 \ \text{contains}=\frac{6.022\times10^{23}}{102}\times0.051 \ \text{molecules}\)</span></span></span></p>
+
+<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(=3.011\times10^{20} \ \text{molecules} \ \text{of} \ \text{AI}_2\text{O}_3\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">The number of aluminium ions (Al<sup>3+</sup>) present in one molecule of aluminium oxide is 2.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, the number of aluminium ions (Al<sup>3+</sup>) present in 3.011 × 10<sup>20</sup>&nbsp;molecules</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">(0.051 g ) of aluminium oxide (Al<sub>2</sub>O<sub>3</sub>) = 2 × 3.011 × 10<sup>20</sup></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">= 6.022 × 10<sup>20</sup>.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 21.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Which has more number of atoms, 100grams of sodium or 100grams of iron (given, atomic mass of Na = 23u, Fe = 56u)?</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">Atomic mass of Na = 23u (Given)</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Then, gram atomic mass of Na = 23g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Now, 23g of Na contains = 6.022 × 10<sup>23</sup>g number of atoms</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Thus, 100g of Na contains = 6.022 × 10<sup>23&nbsp;</sup>/ 23×100 number of atoms</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">= 2.6182 × 10<sup>24</sup>&nbsp;number of atoms</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Again, atomic mass of Fe = 56u (Given)</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Then, gram atomic mass of Fe = 56g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Now, 56g of Fe contains = 6.022 × 10<sup>23</sup>g number of atoms</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Thus, 100g of Fe contains = 6.022 × 10<sup>23&nbsp;</sup>/ 56 × 100 number of atoms</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">= 1.0753 × 10<sup>24</sup>&nbsp;number of atoms</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, 100grams of sodium contain more number of atoms than 100grams of iron.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 22.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">An element X forms the following compounds with hydrogen, carbon and oxygen:</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">H<sub>2</sub>X, CX<sub>2</sub>, XO<sub>2</sub>, XO<sub>3</sub></span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><strong><span style="font-size:14px"><span style="font-family:verdana">H<sub>2</sub>X:</span></span></strong></p>
+
+<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{Element/ Ion}\ \ \ \ \ \ \ \text{H}\ \ \ \ \ \ \text{X}\\ \ \ \ \text{Valency}\ \ \ \ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ \ 2\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">To stabilize the compound with hydrogen, two atoms of X are required. Therefore, the valency of X in this compound will be two.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana"><strong>CX<sub>2</sub>:</strong></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">&nbsp;</span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{Element/ Ion}\ \ \ \ \ \ \ \text{C}\ \ \ \ \ \ \text{X}\\ \ \ \ \text{Valency}\ \ \ \ \ \ \ \ \ \ \ \ \ \ 4\ \ \ \ \ \ 2\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">To stabilize the compound with hydrogen, two atoms of X are required. Thus, the valency of X in this compound is two.</span></span></p>
+
+<p><strong><span style="font-size:14px"><span style="font-family:verdana">XO<sub>2</sub>:</span></span></strong></p>
+
+<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{Element/ Ion}\ \ \ \ \ \ \ \text{X}\ \ \ \ \ \ \ \ \ \ \text{O}\\ \ \ \ \text{Valency}\ \ \ \ \ \ \ \ \ \ \ \ \ \ 4\ \ \ \ \ \ -2\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">To stabilize this compound with oxygen, four atoms of X are required. Thus the valency of X in this compound if four.</span></span></p>
+
+<p><strong><span style="font-size:14px"><span style="font-family:verdana">XO<sub>3</sub>:</span></span></strong></p>
+
+<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{Element/ Ion}\ \ \ \ \ \ \ \text{X}\ \ \ \ \ \ \ \ \ \ \text{O}\\ \ \ \ \text{Valency}\ \ \ \ \ \ \ \ \ \ \ \ \ \ 6\ \ \ \ \ \ -2\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">To stabilize this compound with oxygen, six atoms of X are required. Thus, the valency of X in this compound is six.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 23.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">If one gram of sulphur contains x atoms, calculate the number of atoms in one gram of oxygen element.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">(Atomic masses: S = 32u; O = 16u)</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">Given,</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">1g&nbsp;sulphur contains&nbsp;x&nbsp;atoms</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">We know that equal moles of all substances contain equal number of molecules (1 mole of all substances contains 6.022 × 10<sup>23</sup>&nbsp;molecules).</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, the ratio of molecules in sulphur and oxygen will be the same as their ratio of moles.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, 1g of </span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{S} = \frac{1}{32}\)</span></span></span><span style="font-size:14px"><span style="font-family:verdana"> moles of S Now,&nbsp;</span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\frac{1}{32}\)</span></span></span><span style="font-size:14px"><span style="font-family:verdana"> moles of S contain&nbsp;x&nbsp;molecules (given). Since equal number of molecules are present in equal moles of all substances, <span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\frac{1}{32}\)</span></span></span> moles of oxygen will also contain&nbsp;x&nbsp;number of molecules.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana"><strong>Number of moles in 1g of oxygen:</strong></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">1 mole of O = 16g</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">16g O = 1 mole of O</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Therefore, 1g </span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\text{O}_2=\frac{1}{16}\)</span></span></span><span style="font-size:14px"><span style="font-family:verdana">&nbsp;moles of O<sub>2</sub></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">We have already stated that <span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\frac{1}{32}\)</span></span></span> moles of oxygen contain x molecules; therefore,</span></span></p>
+
+<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\frac{1}{16}\)</span></span></span><span style="font-size:14px"><span style="font-family:verdana">&nbsp;mole of oxygen will contain </span></span><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(=\frac{\text{x}\ \times\ 32}{16} = 2 \text{x molecules}\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, 1 gram&nbsp;oxygen consists of 2x&nbsp;the number of sulphur molecules.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 24.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Write the formulae for the following and calculate the molecular mass for each one of them.</span></span></p>
+
+<ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Caustic potash</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Baking powder</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Lime stone</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Caustic soda</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Ethanol</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Common salt</span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><table border="2" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: top;"><strong><span style="font-size:14px"><span style="font-family:verdana">S.No.</span></span></strong></td>
+			<td style="text-align: center; vertical-align: top;"><strong><span style="font-size:14px"><span style="font-family:verdana">Compound</span></span></strong></td>
+			<td style="text-align: center; vertical-align: top;"><strong><span style="font-size:14px"><span style="font-family:verdana">Formula</span></span></strong></td>
+			<td style="text-align: center; vertical-align: top;"><strong><span style="font-size:14px"><span style="font-family:verdana">Molecular mass</span></span></strong></td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">(a)</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">Caustic potash</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">KOH</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">39 + 16 +1 = 56u</span></span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">(b)</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">Baking powder</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">NaHCO<sub>3</sub></span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">23 + 1 + 12 + 3&nbsp;× 16 = 84u</span></span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">(c)</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">Lime stone</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">CaCO<sub>3</sub></span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">40 + 12 + 3&nbsp;× 16 = 100u</span></span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">(d)</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">Caustic soda</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">NaOH</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">23 + 16 + 1 = 40u</span></span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">(e)</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">Ethanol</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">C<sub>2</sub>H<sub>5</sub>OH</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">2&nbsp;× 12 + 5&nbsp;× 1 + 16 +1 = 46u</span></span></td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">(f)</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">Common salt</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">NaCl</span></span></td>
+			<td style="text-align: center; vertical-align: top;"><span style="font-size:14px"><span style="font-family:verdana">23 + 35.5 = 58.5u</span></span></td>
+		</tr>
+	</tbody>
+</table>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 25.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Which has more atoms, 50g of aluminium or 50g of iron? Illustrate your answer with the help of calculations.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">(Atomic masses: Al = 27u; Fe = 56u)</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">1 mole of&nbsp;aluminium&nbsp;weighing 27g has = 6.022 × 10<sup>23</sup>&nbsp;atoms of Al</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">So, 1g of Al has = 0.22 × 10<sup>23</sup>&nbsp;atoms of Al</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, 50g of Al will have = 50 × 0.22 × 10<sup>23</sup>&nbsp;atoms of Al</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">= 11 × 10<sup>23</sup>&nbsp;atoms of Al</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">1 mole of iron weighing 56g has = 6.022 × 10<sup>23</sup>&nbsp;atoms of Fe</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">So, 1g of Fe has = 0.10 × 1023&nbsp;atoms of Fe</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, 50g of Fe will have = 50 × 0.10 × 10<sup>23</sup>&nbsp;atoms of Fe = 5 × 10<sup>23</sup>&nbsp;atoms of Fe</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Thus, 50g of Al has more no. of atoms as compared to 50g of Fe.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 26.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Write the cations and anions present, if any, in the following:</span></span></p>
+
+<ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">CH<sub>3</sub>COONa</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">NaCl</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">H<sub>2</sub></span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">NH<sub>4</sub>NO<sub>3</sub></span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><ol start="1" style="list-style-type: lower-alpha;">
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>CH<sub>3</sub>COONa:</strong> Na<sup>+</sup>(cation) and CH<sup>3</sup>COO<sup>-</sup>(anion)</span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>NaCl:</strong> Na<sup>+</sup>(cation) and Cl<sup>-</sup>(anion)</span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>H<sub>2</sub>:</strong> It is a covalent molecule. So, cation and anion are not present.</span></span></p>
+	</li>
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana"><strong>NH<sub>4</sub>NO<sub>3</sub>:</strong> NH<sub>4+</sub>(cation) and NO<sub>3-</sub>(anion)</span></span></p>
+	</li>
+</ol>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 27.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">State the two important laws of chemical combination. How Dalton’s atomic theory explains the two Laws?</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">John Dalton based his theory on two laws. They are explained below:</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana"><strong>Law of Conservation of Mass: </strong>According to the law of conservation of mass, the matter is neither created nor destroyed. This means, in a chemical reaction, amount of elements remains same in starting when only reactants there and at the completion of the reaction when product formed. We always use the “Law of conservation of mass” when we balance chemical equations.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana"><strong>Law of Constant Composition: </strong>According to the law of constant composition, a pure compound will always have the same proportion of the same elements. For example, table salt with the molecular formula of NaCl holds the same proportions of the elements Na (sodium) and Cl (chlorine). This composition doesn’t depend on where the salt came from and how much salt one should have.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 28.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">What are ionic and molecular compounds? Give examples.</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><span style="font-size:14px"><span style="font-family:verdana">Atoms of different elements join together in definite proportions to form molecules of compounds. Compounds can be either ionic compounds or molecular compounds.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Ionic compounds are those compounds that contain charged species of metals and nonmetals.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">The charged species are known as ions.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">An ion is a charged particle and can be negatively or positively charged.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">A negatively charged ion is called an anion and the positively charged ion is called cation.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Ionic compounds are formed when ionic bonds are formed between different elements through transfer of electrons.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Examples of ionic compounds -&nbsp;sodium chloride, calcium oxide.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Molecular compounds or covalent compounds are those compounds in which the elements share electrons via covalent bonds.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Examples -&nbsp;water, ammonia, carbon dioxide.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 29.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">In an experiment, 4.90g of copper oxide was obtained form 3.92g of copper. In another experiment, 4.55g of copper oxide gave, on reduction, 3.64g of copper. Show with the help of calculations that these figures verify the law of constant proportions.</span></span></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><p><strong><span style="font-size:14px"><span style="font-family:verdana">Rection 1:</span></span></strong></p>
+
+<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\ \ 2\text{Cu} \ \ \ \ \ \  +\ \ \  \ \ \ \ \ \ \ \  \text{O}_2\ \ \ \ \ \ \ \ \ \xrightarrow{\ \ \ \ \ \ \ \ \ \ }\ \ \ \ 2\text{CuO}\\ ^{(3.92\text{gm})} \ \ \ \ \ \ \  \ ^{(4.90-3.92\ =\ 0.98\text{gm})}\ \ \ \ \ \ \ \  \ \ \ \ \ \ \ ^{(4.90\text{gm})}\)</span></span></span></p>
+
+<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\frac{3.92}{3.92}=1,\ \frac{0.98}{3.92}=0.25,\ \frac{4.90}{3.92}=1.25\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">So, 1 equivalent of Cu reacts with 0.25 equivalent of O<sub>2</sub> to from 1.25 equivalent of copper oxide.</span></span></p>
+
+<p><strong><span style="font-size:14px"><span style="font-family:verdana">Reaction 2:</span></span></strong></p>
+
+<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(2\text{CuO}\ \ \xrightarrow{\ \ \ \ \ \ \ \ \ \ }\ \ \ \ 2\text{Cu}\ \ \ +\ \ \ \ \ \ \ \ \ \ \text{O}_2\\ ^{(4.55\text{gm})}\ \ \ \ \ \ \ \ \ \ \ \ \ \  \ ^{(3.64\text{gm})}\ \ \ \ \ \ ^{(4.55-3.64\ =\ 0.91\text{gm})}\)</span></span></span></p>
+
+<p><span style="font-size:18px"><span style="font-family:verdana"><span class="equation">\(\frac{4.55}{3.64}=1.25,\ \frac{3.64}{3.64}=1,\ \frac{0.91}{3.64}=0.25\)</span></span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Here again, one can see that 1.25 equivalent of CuO decomposed to form 1 equivalent of Cu and 0.25 equivalent of oxygen.</span></span></p>
+
+<p><span style="font-size:14px"><span style="font-family:verdana">Hence, law of constant proportion is verified.</span></span></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 30.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Complete the following crossword puzzle (Figure) by using the name of the chemical elements. Use the data given in the table following.</span></span></p>
+
+<table border="2" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
+	<tbody>
+		<tr>
+			<td colspan="2" rowspan="1" style="text-align: center; vertical-align: top;">
+			<div><strong><span style="font-size:14px"><span style="font-family:verdana">Across</span></span></strong></div>
+			</td>
+			<td colspan="2" rowspan="1" style="text-align: center; vertical-align: top;">
+			<div><strong><span style="font-size:14px"><span style="font-family:verdana">Down</span></span></strong></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; text-align: center;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">2.</span></span></div>
+			</td>
+			<td style="vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">The element used by Rutherford during his <span class="equation">\(\alpha\)</span>–scattering experiment.</span></span></div>
+			</td>
+			<td style="vertical-align: top; text-align: center;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">1.</span></span></div>
+			</td>
+			<td style="vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">A white lustrous metal used for making ornaments and which tends to get tarnished black in the presence of moist air.</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; text-align: center;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">3.</span></span></div>
+			</td>
+			<td style="vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">An element which forms rust on exposure to moist air.</span></span></div>
+			</td>
+			<td style="vertical-align: top; text-align: center;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">4.</span></span></div>
+			</td>
+			<td style="vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Both brass and bronze are alloys of the element.</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; text-align: center;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">5.</span></span></div>
+			</td>
+			<td style="vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">A very reactive non–metal stored under water.</span></span></div>
+			</td>
+			<td style="vertical-align: top; text-align: center;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">6.</span></span></div>
+			</td>
+			<td style="vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">The metal which exists in the liquid state at room temperature.</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top; text-align: center;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">7.</span></span></div>
+			</td>
+			<td style="vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Zinc metal when treated with dilute hydrochloric acid produces a gas of this element which when tested with burning splinter produces a pop sound.</span></span></div>
+			</td>
+			<td style="vertical-align: top; text-align: center;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">8.</span></span></div>
+			</td>
+			<td style="vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">An element with symbol Pb.</span></span></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><img alt="" src="http://uatportal.oyeexams.com/ckfinder/userfiles/images/CBSE_Board/Exemplar/9th_Class/Science/Chapter_3/Long_Ans/Que_45.png" style="height:100%; width:100%"></p>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><table border="2" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
+	<tbody>
+		<tr>
+			<td colspan="2" rowspan="1" style="vertical-align: top;">
+			<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana"><strong>Across</strong></span></span></div>
+			</td>
+			<td colspan="2" rowspan="1" style="vertical-align: top;">
+			<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:verdana"><strong>Down</strong></span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">2</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Gold</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">1.</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Silvar</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">3.</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Iron</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">4.</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Copper</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">5.</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Phosphorus</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">6.</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Mercury</span></span></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">7.</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Hydrogen</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">8.</span></span></div>
+			</td>
+			<td style="text-align: center; vertical-align: top;">
+			<div><span style="font-size:14px"><span style="font-family:verdana">Lead</span></span></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><img alt="" src="http://staging.portal.oyeexams.com/ckfinder/userfiles/images/CBSE_Board/Exemplar/9th_Class/Science/Chapter_3/Long_Ans/Ans_45.png" style="height:100%; width:100%"></p>
+</span>
+  </span>
+</div><div class="questiontop">
+  <div class="questionstyle">
+    <div class="questionclass">Q 31.</div>
+    <div class="questionsstyle">
+      <span class="answerlast">
+        <p><span style="font-size:14px"><span style="font-family:verdana">Raunak took 5 moles of carbon atoms in a container and Krish also took 5 moles of sodium atoms in another container of same weight.</span></span></p>
+
+<ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">Whose container is heavier?</span></span></li>
+	<li><span style="font-size:14px"><span style="font-family:verdana">Whose container has more number of atoms?</span></span></li>
+</ol>
+
+      </span>
+      
+    </div>
+  </div>
+</div><div class="marks">
+  <span class="markone">4</span>
+  <span class="mark">Marks</span>
+</div><div class="answerstyle">
+  <span class="ansstyle"> Ans:</span>
+  <span style="width: 92%">
+    <span class="newoption">B</span>
+    <span><ol start="1" style="list-style-type: lower-alpha;">
+	<li><span style="font-size:14px"><span style="font-family:verdana">1 mole = molar mass of a substance.</span></span></li>
+</ol>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana"><span style="font-family:verdana"><span style="font-size:14px"><span style="font-family:verdana"><span style="font-size:18px"><span class="equation">\(\therefore\)</span></span></span></span></span>&nbsp;1 mole of carbon atoms weigh = 12g</span></span></p>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana"><span style="font-family:verdana"><span style="font-size:14px"><span style="font-family:verdana"><span style="font-size:18px"><span class="equation">\(\therefore\)</span></span></span></span></span>&nbsp;5 moles of carbon atoms will weigh = 12 </span></span><span style="font-family:verdana"><span style="font-size:14px">×</span></span><span style="font-size:14px"><span style="font-family:verdana">&nbsp;5 = 60g</span></span></p>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">Hence, Raunak’s container has weigh = 60g In the same way,</span></span></p>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana"><span style="font-size:14px"><span style="font-family:verdana"><span style="font-family:verdana"><span style="font-size:14px"><span style="font-family:verdana"><span style="font-size:18px"><span class="equation">\(\therefore\)</span></span></span></span></span></span></span>&nbsp;1 mole of sodium atoms weigh = 23g</span></span></p>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana"><span style="font-size:14px"><span style="font-family:verdana"><span style="font-family:verdana"><span style="font-size:14px"><span style="font-family:verdana"><span style="font-size:18px"><span class="equation">\(\therefore\)</span></span></span></span></span></span></span>&nbsp;5 moles of sodium atoms will weigh = 23 </span></span><span style="font-family:verdana"><span style="font-size:14px">×</span></span><span style="font-size:14px"><span style="font-family:verdana">&nbsp;5 = 115g</span></span></p>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">Hence, Krish’s container has weigh = 115g</span></span></p>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">Thus, Krish’s container is heavier than Raunak’s container.</span></span></p>
+
+<p style="margin-left: 40px;"><span style="font-size:14px"><span style="font-family:verdana">As, 1 mole = 6.022 </span></span><span style="font-family:verdana"><span style="font-size:14px">×</span></span><span style="font-size:14px"><span style="font-family:verdana">&nbsp;10<sup>23</sup>&nbsp;atoms</span></span></p>
+
+<ol start="2" style="list-style-type: lower-alpha;">
+	<li>
+	<p><span style="font-size:14px"><span style="font-family:verdana">Here, both containers have 5 moles of each carbon and sodium, therefore,</span></span><span style="font-size:14px"><span style="font-family:verdana">both containers have equal number of atoms, e., 5 </span></span><span style="font-family:verdana"><span style="font-size:14px">×</span></span><span style="font-size:14px"><span style="font-family:verdana">&nbsp;6.022 </span></span><span style="font-family:verdana"><span style="font-size:14px">× 10</span></span><span style="font-size:14px"><span style="font-family:verdana"><sup>23&nbsp;</sup></span></span><span style="font-size:14px"><span style="font-family:verdana">atoms,</span></span>&nbsp;<span style="font-size:14px"><span style="font-family:verdana">or 3.011 </span></span><span style="font-family:verdana"><span style="font-size:14px">×</span></span><span style="font-size:14px"><span style="font-family:verdana">&nbsp;10<sup>24</sup>&nbsp;atoms in each.</span></span></p>
+	</li>
+</ol>
+</span>
+  </span>
+</div></div>
+    </div>
+</body>
+
+</html>
