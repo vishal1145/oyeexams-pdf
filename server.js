@@ -147,8 +147,24 @@ app.post("/get-pdf", async (req, res) => {
   fs.writeFileSync("abc.html", content);
 
   try {
-    const browser = await puppeteer.launch({
+    const PUPPETEER_OPTIONS = {
       headless: true,
+      args: [
+        '--disable-gpu',
+        '--disable-dev-shm-usage',
+        '--disable-setuid-sandbox',
+        '--no-first-run',
+        '--no-sandbox',
+        '--no-zygote',
+        '--single-process',
+        "--proxy-server='direct://'",
+        '--proxy-bypass-list=*',
+        '--deterministic-fetch',
+      ],
+    };
+    const browser = await puppeteer.launch({
+      PUPPETEER_OPTIONS
+      // headless: true,
       // executablePath: '/usr/bin/chromium-browser'
     })
     const page = await browser.newPage()
