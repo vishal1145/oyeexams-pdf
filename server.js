@@ -169,8 +169,8 @@ app.post("/get-pdf", async (req, res) => {
     })
     // await browser.close()
     const pdfPath = __dirname + '/pdfFile.pdf'
-    const pdfFile = fs.readFileSync(pdfPath, { encoding: 'base64' });
-    // res.contentType("application/pdf");
+    const pdfFile = fs.readFileSync(pdfPath); //, { encoding: 'base64' }
+    res.contentType("application/pdf");
     res.send(pdfFile)
   } catch (error) {
     console.log(error);

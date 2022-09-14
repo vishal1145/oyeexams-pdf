@@ -17,7 +17,9 @@ router.get('/html-to-pdf', async (req, res) => {
         var htmlcontent = bufcontent.toString();
 
         await page.setContent(htmlcontent, {
-          waitUntil: 'domcontentloaded'
+          // waitUntil: 'domcontentloaded'
+          waitUntil: 'networkidle0',
+          timeout: 0
         })
         await page.pdf({
           format: 'A4',
@@ -27,8 +29,8 @@ router.get('/html-to-pdf', async (req, res) => {
         })
         // await browser.close()
         const pdfPath = __dirname + '/pdfFile.pdf'
-        var pdfFile = fs.readFileSync(pdfPath, { encoding: 'base64' });
-        // res.contentType("application/pdf");
+        var pdfFile = fs.readFileSync(pdfPath); //, { encoding: 'base64' }
+        res.contentType("application/pdf");
         res.send(pdfFile)
       })
   } catch (error) {
