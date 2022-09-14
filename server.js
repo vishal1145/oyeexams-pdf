@@ -94,7 +94,7 @@ async function getAPIResponse(EAPaperTemplateID, EAExamAssignID, url, token) {
       method: "post",
       url: url,
       headers: {
-        Authorization: token,
+        Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       },
       data: data,
