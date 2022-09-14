@@ -162,11 +162,11 @@ app.post("/get-pdf", async (req, res) => {
         '--deterministic-fetch',
       ],
     };
-    const browser = await puppeteer.launch({
-      PUPPETEER_OPTIONS
+    const browser = await puppeteer.launch()
+      // PUPPETEER_OPTIONS
       // headless: true,
       // executablePath: '/usr/bin/chromium-browser'
-    })
+    // })
     const page = await browser.newPage()
     let reqPath = path.join(__dirname, "/abc.html");
     const bufcontent = fs.readFileSync(
