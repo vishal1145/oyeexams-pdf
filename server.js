@@ -72,7 +72,7 @@ function getAnswerDiv(Question) {
   let answertext = `<div class="answerstyle">
   <span class="ansstyle"> Ans:</span>
   <span style="width: 92%">
-    <span class="newoption">B</span>
+    <span class="newoption"></span>
     <span>$$answer$$</span>
   </span>
 </div>`;
