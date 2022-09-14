@@ -163,10 +163,10 @@ app.post("/get-pdf", async (req, res) => {
         '--deterministic-fetch',
       ],
     };
-    const executablePath = await new Promise(resolve => locateChrome(arg => resolve(arg)));
+    // const executablePath = await new Promise(resolve => locateChrome(arg => resolve(arg)));
     const browser = await puppeteer.launch({
       // args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      executablePath
+      executablePath: '/usr/bin/google-chrome'
     })
     // PUPPETEER_OPTIONS
     // headless: true,
