@@ -6,7 +6,8 @@ const path = require('path')
 router.get('/html-to-pdf', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
-      headless: true
+      // headless: true
+      executablePath: '/usr/bin/google-chrome'
     })
     const page = await browser.newPage()
     let reqPath = path.join(__dirname, "/abc.html");

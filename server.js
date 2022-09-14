@@ -18,6 +18,8 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+const htmlToPdf = require('./htmltopdf')
+app.use('/convert', htmlToPdf)
 
 function optionDiv(OptionValue, optionSlag) {
   // `<div class="optiontop">
@@ -172,9 +174,6 @@ app.post("/get-pdf", async (req, res) => {
     console.log(error);
   }
 });
-
-const htmlToPdf = require('./htmltopdf')
-app.use('/convert', htmlToPdf)
 
 app.listen(port, () => {
   console.log("Listening to port", port);
