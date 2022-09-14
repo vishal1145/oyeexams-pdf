@@ -157,7 +157,8 @@ app.post("/get-pdf", async (req, res) => {
     const bufcontent = fs.readFileSync(
       reqPath, { encoding: 'utf8', flag: 'r' })
     await page.setContent(bufcontent, {
-      waitUntil: 'domcontentloaded'
+      // waitUntil: 'domcontentloaded',
+      waitUntil: networkidle0
     })
     await page.pdf({
       format: 'A4',
@@ -167,11 +168,9 @@ app.post("/get-pdf", async (req, res) => {
     })
     // await browser.close()
     const pdfPath = __dirname + '/pdfFile.pdf'
-    setTimeout(() => {
-      const pdfFile = fs.readFileSync(pdfPath, { encoding: 'base64' });
-      // res.contentType("application/pdf");
-      res.send(pdfFile)
-    }, 3000);
+    const pdfFile = fs.readFileSync(pdfPath, { encoding: 'base64' });
+    // res.contentType("application/pdf");
+    res.send(pdfFile)
   } catch (error) {
     console.log(error);
   }
