@@ -11,7 +11,6 @@ const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.static("/"));
-app.set("view engine", "html");
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -133,7 +132,7 @@ async function getAPIResponse(EAPaperTemplateID, EAExamAssignID, url, token) {
 app.post("/get-pdf", async (req, res) => {
   console.log("in get-pdf");
   const { EAPaperTemplateID } = req.body;
-  const pdfPath = `${__dirname}/pdfFolder/${EAPaperTemplateID}.pdf`;
+  const pdfPath = `${__dirname}/${EAPaperTemplateID}.pdf`;
   await waitForProcessToFinish(EAPaperTemplateID);
   sendFileTOBrowser(res, pdfPath);
 });
@@ -200,7 +199,7 @@ const generatePDF = async (req) => {
   content = content.replace("$$allquestionsDiv$$", allquestionsDiv);
 
   const uniqueName = EAPaperTemplateID;
-  let reqPath = path.join(__dirname, `/htmlFolder/${uniqueName}.html`);
+  let reqPath = path.join(__dirname, `/${uniqueName}.html`);
   console.log("reqPath", reqPath);
   fs.writeFileSync(reqPath, content);
 
@@ -217,7 +216,7 @@ const generatePDF = async (req) => {
       waitUntil: 'networkidle0',
       timeout: 0
     })
-    var savePath = `${__dirname}/pdfFolder/${uniqueName}.pdf`;
+    var savePath = `${__dirname}/${uniqueName}.pdf`;
     console.log("savePath", savePath);
     await page.pdf({
       format: 'A4',
