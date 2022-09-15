@@ -12,7 +12,26 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.static("/"));
 app.set("view engine", "html");
-app.use(cors())
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+app.use(cors({
+  credentials: true,
+  origin: '*',
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+  exposedHeaders: ["set-cookie"]
+}))
+
+//handle exception
+process.on('unhandledRejection', (result, error) => {
+}).on('uncaughtException', err => {
+  console.error(err, 'Uncaught Exception thrown');
+});
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
