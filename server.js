@@ -18,8 +18,8 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-const htmlToPdf = require('./htmltopdf')
-app.use('/convert', htmlToPdf)
+// const htmlToPdf = require('./htmltopdf')
+// app.use('/convert', htmlToPdf)
 
 function optionDiv(OptionValue, optionSlag) {
   // `<div class="optiontop">
@@ -112,7 +112,40 @@ async function getAPIResponse(EAPaperTemplateID, EAExamAssignID, url, token) {
 }
 
 app.post("/get-pdf", async (req, res) => {
+  const { EAPaperTemplateID } = req.body;
+  const pdfPath = `${__dirname}/pdfFolder/${EAPaperTemplateID}.pdf`;
+  await waitForProcessToFinish(EAPaperTemplateID);
+  sendFileTOBrowser(res, pdfPath);
+});
+
+function waittime() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true);
+    }, 10000);
+  });
+}
+
+const waitForProcessToFinish = async (EAPaperTemplateID) => {
+  for (var i = 0; i < 100; i++) {
+    await waittime();
+    if (!processes[EAPaperTemplateID]) {
+      return true;
+    }
+  }
+  return true;
+}
+
+const sendFileTOBrowser = async (res, pdfPath) => {
+  const pdfFile = fs.readFileSync(pdfPath); //, { encoding: 'base64' }
+  res.contentType("application/pdf");
+  res.send(pdfFile)
+}
+
+const processes = {};
+const generatePDF = async (req) => {
   const { EAPaperTemplateID, EAExamAssignID, url, token } = req.body;
+  processes[EAPaperTemplateID] = true;
   const data = await getAPIResponse(EAPaperTemplateID, EAExamAssignID, url, token);
   let content = fs.readFileSync(`${__dirname}/index.html`, { encoding: 'utf8' })
   const parsedData = JSON.parse(data);
@@ -146,14 +179,17 @@ app.post("/get-pdf", async (req, res) => {
   );
   content = content.replace("$$allquestionsDiv$$", allquestionsDiv);
 
-  fs.writeFileSync("abc.html", content);
+  const uniqueName = EAPaperTemplateID;
+
+  let reqPath = path.join(__dirname, `/htmlFolder/${uniqueName}.html`);
+  fs.writeFileSync(reqPath, content);
 
   try {
     const browser = await puppeteer.launch({
       executablePath: '/usr/bin/google-chrome'
     })
     const page = await browser.newPage()
-    let reqPath = path.join(__dirname, "/abc.html");
+
     const bufcontent = fs.readFileSync(
       reqPath, { encoding: 'utf8', flag: 'r' })
     await page.setContent(bufcontent, {
@@ -161,19 +197,29 @@ app.post("/get-pdf", async (req, res) => {
       waitUntil: 'networkidle0',
       timeout: 0
     })
+    var savePath = `${__dirname}/pdfFolder/${uniqueName}.pdf`;
     await page.pdf({
       format: 'A4',
       landscape: true,
       margin: { left: '0.5cm', top: '0.5cm', right: '0.5cm', bottom: '0.5cm' },
-      path: `${__dirname}/pdfFile.pdf`
+      path: savePath
     })
-    // await browser.close()
-    const pdfPath = __dirname + '/pdfFile.pdf'
-    const pdfFile = fs.readFileSync(pdfPath); //, { encoding: 'base64' }
-    res.contentType("application/pdf");
-    res.send(pdfFile)
+    delete processes[EAPaperTemplateID];
+    // await browser.close()    
+    return savePath;
   } catch (error) {
+    delete processes[EAPaperTemplateID];
     console.log(error);
+    return null;
+  }
+}
+
+app.post("/generate-pdf", async (req, res) => {
+  const pdfPath = await generatePDF(req);
+  if (pdfPath) {
+    sendFileTOBrowser(res, pdfPath);
+  } else {
+    res.status(500).send("Error");
   }
 });
 
