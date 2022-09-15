@@ -206,6 +206,8 @@ const generatePDF = async (req) => {
   try {
     const browser = await puppeteer.launch({
       // executablePath: '/usr/bin/google-chrome-stable'    //google-chrome
+      headless: true,
+      args: ['--use-gl=egl'],
     })
     const page = await browser.newPage()
 
