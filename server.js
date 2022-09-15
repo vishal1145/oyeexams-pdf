@@ -131,6 +131,7 @@ async function getAPIResponse(EAPaperTemplateID, EAExamAssignID, url, token) {
 }
 
 app.post("/get-pdf", async (req, res) => {
+  console.log("in get-pdf");
   const { EAPaperTemplateID } = req.body;
   const pdfPath = `${__dirname}/pdfFolder/${EAPaperTemplateID}.pdf`;
   await waitForProcessToFinish(EAPaperTemplateID);
@@ -199,8 +200,8 @@ const generatePDF = async (req) => {
   content = content.replace("$$allquestionsDiv$$", allquestionsDiv);
 
   const uniqueName = EAPaperTemplateID;
-
   let reqPath = path.join(__dirname, `/htmlFolder/${uniqueName}.html`);
+  console.log("reqPath", reqPath);
   fs.writeFileSync(reqPath, content);
 
   try {
@@ -217,6 +218,7 @@ const generatePDF = async (req) => {
       timeout: 0
     })
     var savePath = `${__dirname}/pdfFolder/${uniqueName}.pdf`;
+    console.log("savePath", savePath);
     await page.pdf({
       format: 'A4',
       landscape: true,
@@ -234,6 +236,7 @@ const generatePDF = async (req) => {
 }
 
 app.post("/generate-pdf", async (req, res) => {
+  console.log("in generate-pdf");
   const pdfPath = await generatePDF(req);
   if (pdfPath) {
     sendFileTOBrowser(res, pdfPath);
