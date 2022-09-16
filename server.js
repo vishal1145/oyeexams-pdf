@@ -205,7 +205,7 @@ const generatePDF = async (req) => {
 
   try {
     const browser = await puppeteer.launch({
-      executablePath: '/usr/bin/chromium' //google-chrome'    //google-chrome-stable
+      executablePath: '/usr/bin/google-chrome'    //google-chrome-stable
       // headless: true,
       // args: ['--use-gl=egl'],
       // args: ['--no-sandbox']
@@ -228,7 +228,7 @@ const generatePDF = async (req) => {
       path: savePath
     })
     delete processes[EAPaperTemplateID];
-    // await browser.close()    
+    await browser.close()    
     return savePath;
   } catch (error) {
     delete processes[EAPaperTemplateID];
