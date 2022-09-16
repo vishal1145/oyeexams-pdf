@@ -210,10 +210,10 @@ const generatePDF = async (req) => {
   try {
     console.log("Log", "Staring pupeeter");
     const browser = await puppeteer.launch({
-      executablePath: '/usr/bin/google-chrome'    //google-chrome-stable
+      // executablePath: '/usr/bin/google-chrome'    //google-chrome-stable
       // headless: true,
       // args: ['--use-gl=egl'],
-      // args: ['--no-sandbox']
+      args: ['--no-sandbox']
     })
     console.log("Log", "Pupeeter launch");
     const page = await browser.newPage()
