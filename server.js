@@ -202,23 +202,32 @@ const generatePDF = async (req) => {
   let reqPath = path.join(__dirname, `/${uniqueName}.html`);
   console.log("reqPath", reqPath);
   fs.writeFileSync(reqPath, content);
+  console.log("Log", "HTML FIle Saved");
+
+  await waittime();
+  console.log("Log", "Wait finish");
 
   try {
+    console.log("Log", "Staring pupeeter");
     const browser = await puppeteer.launch({
       executablePath: '/usr/bin/google-chrome'    //google-chrome-stable
       // headless: true,
       // args: ['--use-gl=egl'],
       // args: ['--no-sandbox']
     })
+    console.log("Log", "Pupeeter launch");
     const page = await browser.newPage()
+
+    console.log("Log", "Page open");
 
     const bufcontent = fs.readFileSync(
       reqPath, { encoding: 'utf8', flag: 'r' })
     await page.setContent(bufcontent, {
       // waitUntil: 'domcontentloaded',
       waitUntil: 'networkidle0',
-      timeout: 0
+      // timeout: 0
     })
+    console.log("Log", "Buffer generate");
     var savePath = `${__dirname}/${uniqueName}.pdf`;
     console.log("savePath", savePath);
     await page.pdf({
@@ -227,10 +236,12 @@ const generatePDF = async (req) => {
       margin: { left: '0.5cm', top: '0.5cm', right: '0.5cm', bottom: '0.5cm' },
       path: savePath
     })
+    console.log("Log", "mark process done");
     delete processes[EAPaperTemplateID];
     await browser.close()    
     return savePath;
   } catch (error) {
+    console.log("Log", "In catch");
     delete processes[EAPaperTemplateID];
     console.log(error);
     return null;
