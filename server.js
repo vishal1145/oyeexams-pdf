@@ -228,7 +228,7 @@ const generatePDF = async (req) => {
       // timeout: 0
     })
     console.log("Log", "Buffer generate");
-    var savePath = `${__dirname}/${uniqueName}.pdf`;
+    var savePath = `${__dirname}/${uniqueName}.pdf`; 
     console.log("savePath", savePath);
     await page.pdf({
       format: 'A4',
