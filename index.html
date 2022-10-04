@@ -7,7 +7,13 @@
             margin: 0px 0px 0px 0px;
         }
 
+        body {
+            margin: 0px;
+            /* margin-top: -40px !important; */
+        }
+
         table,
+        #mytable,
         tr,
         td {
             border: 1px solid black;
@@ -164,42 +170,57 @@
             font-weight: 600;
         }
 
+        .questiontop {
+            width: 94% !important;
+        }
+
         .questionstyle {
-            float: left;
+            /* float: left; */
+            /* display: flex; */
             color: #000;
-            font-size: 18px;
+            font-size: fontsize;
             line-height: 26px;
-            width: 95%;
-            margin-top: 20px;
+            /* width: 90%; */
+            /* margin-top: 20px !important; */
             margin-left: 0px;
             padding-left: 0px;
-            max-width: 90%;
+            /* max-width: 95%; */
+            /* display: contents; */
         }
 
         .answerstyle {
             /* margin-top: 0.25rem !important; */
             width: 100%;
             font-size: 18px;
-            float: left;
+            /* float: left; */
         }
 
         .questionclass {
             float: left;
-            font-size: 18px;
+            font-size: fontsize;
             line-height: 26px;
             font-weight: 700;
+            /* padding-top: 16px; */
         }
 
         .questionsstyle {
-            display: flex;
+            /* display: flex; */
             flex-wrap: wrap;
-            width: 100% !important;
-            max-width: 95%;
-            font-size: 18px;
+            /* width: 100% !important; */
+            /* max-width: 95%; */
+            font-size: fontsize;
             line-height: 26px !important;
             color: #000;
-            font-size: 18px;
+            /* font-size: 18px; */
             line-height: 26px;
+        }
+
+        p>span,
+        span>p,
+        li>span,
+        li,
+        li>p {
+            font-size: fontsize !important;
         }
 
         .optionstyle {
@@ -210,10 +231,11 @@
 
         .marks {
             font-weight: 700;
-            width: 10%;
+            /* width: 10%; */
             background-color: #ffffff;
-            float: right !important;
-            margin-top: 20px;
+            /* float: right !important; */
+            /* margin-top: 40px !important; */
+            display: flex;
         }
 
         .ansstyle {
@@ -247,10 +269,10 @@
             display: inline;
         }
 
-        /* .questionstyle {
-        margin: 0 auto 0 0;
-        min-width: 25%;
-      } */
+        .questionstyle {
+            margin: 0 auto 0 0;
+            /* min-width: 25%; */
+        }
 
         .questionclass p {
             display: inline;
@@ -271,6 +293,7 @@
 
         .mark {
             margin-left: 0.25rem !important;
+            width: 0px !important;
         }
 
         .tablestyle {
@@ -282,6 +305,32 @@
             margin-top: 0px;
             margin-bottom: 0px;
         }
+
+        /* img {
+            max-width: 300px !important;            
+        } */
+
+        img #imgId {
+            max-height: 80px !important;
+        }
+
+        .qmarks {
+            display: flex !important;
+        }
+
+        .bgtext {
+            position: fixed;
+        }
+
+        .bgtext::before {
+            content: var(--my-watermark-var);
+        }
+
+        /* .dynamicStyle {
+            font-size: var(--my-fontsize-var) !important;
+            font-style: var(--my-fontstyle-var) !important;
+        } */
+        /* var(----my-watermark-var); */
     </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
@@ -302,7 +351,7 @@
 
 <body>
     <!--  -->
-    <div style="margin-left: 2%; margin-right: 2%; margin-top: 2%">
+    <div style="margin-left: 2%; margin-right: 2%; margin-top: 0px">
         <div _ngcontent-kiq-c16="" style="
           display: -webkit-box;
           flex-wrap: wrap;
@@ -317,13 +366,13 @@
             flex: 0 0 25%;
             max-width: 20%;
           ">
-                <!----><img _ngcontent-kiq-c16="" height="70px;" width="130px" src="$$imageSource$$"
-                    class="ng-star-inserted" />
+                <img _ngcontent-kiq-c16="" id="imgId" width="100px" src="$$PaperHeaderImage$$" class="ng-star-inserted"
+                    style="max-height: 80px;" />
             </div>
             <div _ngcontent-kiq-c16="" style="
             padding-left: 5rem !important;
             padding-right: 1rem !important;
-            margin-bottom: 3rem !important;
+            margin-bottom: 1rem !important;
             flex: 0 0 50%;
             max-width: 50%;
             flex: 0 0 50%;
@@ -337,7 +386,7 @@
               text-align: center !important;
               padding-left: 1rem !important;
             ">
-                    <span _ngcontent-kiq-c16="">Shishukunj Institute Indore Madhya Pradesh
+                    <span _ngcontent-kiq-c16="">$$PaperHeaderName$$
                     </span>
                 </h2>
                 <p _ngcontent-kiq-c16="" style="
@@ -347,18 +396,19 @@
               text-align: center !important;
               padding-left: 1rem !important;
             ">
-                    Addresss Test
+                    $$PaperHeaderAddress$$
                 </p>
             </div>
         </div>
 
         <div style="border-top: 1px solid #d1dae6">
-            <table style="
+            <table id="mytable" style="
             color: #3a5077;
             font-size: 16px;
             font-weight: 500;
             border: 0;
             width: 100%;
+            margin-top: 16px;
           ">
                 <tr style="border: none">
                     <td style="border: none">Test / Exam Name: $$examname$$</td>
@@ -368,19 +418,19 @@
                 </tr>
                 <tr style="border: none">
                     <td style="border: none;">Student Name: <span style=" border-bottom: 1px dashed #999;min-width: 120px;
-                        display: inline-block;">$$studentName$$</span></td>
+                        display: inline-block;"></span></td>
                     <td style="border: none">Section: <span style=" border-bottom: 1px dashed #999;min-width: 120px;
-                        display: inline-block;"> $$studentSection$$ </span></td>
+                        display: inline-block;"> </span></td>
                     <td style="border: none">Roll No.: <span style=" border-bottom: 1px dashed #999;min-width: 120px;
-                        display: inline-block;">$$studentRollNo$$</span> </td>
+                        display: inline-block;"></span> </td>
                 </tr>
             </table>
-            <table style="
+            <table id="mytable" style="
             color: #3a5077;
             font-size: 16px;
             font-weight: 500;
             margin-left: 50% !important;
-            margin-top: 1%;
+            margin-top: 16px;
           ">
                 <tr style="border: 1px solid #3a5077">
                     <td style="
@@ -417,9 +467,11 @@
         <!--  -->
 
 
+        $$watermark$$
 
         <div style="border-top: 1px solid #d1dae6; margin-top: 1%; page-break-after: always;display:block; clear:both;">
-            $$allquestionsDiv$$</div>
+            $$allquestionsDiv$$
+        </div>
     </div>
 </body>
 

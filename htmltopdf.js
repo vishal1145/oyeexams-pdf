@@ -37,5 +37,20 @@ router.get('/html-to-pdf', async (req, res) => {
     console.log(error);
   }
 })
-
-module.exports = router
+// app.post("/generate-pdf", async (req, res) => {
+//   console.log("in generate-pdf");
+//   // const pdfPath = await generatePDF(req);
+//   // if (pdfPath) {
+//   //   res.send({request:"sdsadsad"});
+//   //   sendFileTOBrowser(res, pdfPath);
+//   // } else {
+//   //   res.status(500).send("Error");
+//   // }
+//   generatePDF(req);
+//   res.send({ request: "request in progress" });
+//   //   sendFileTOBrowser(res, pdfPath);
+//   // } else {
+//   //   res.status(500).send("Error");
+//   // }
+// });
+// module.exports = router
