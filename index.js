@@ -75,7 +75,7 @@ function getQuestionDiv(Question, objectNo, length) {
           $$questionText$$
         </span>
         $$options$$
-        <h4 style="text-align: center; margin-top: 5px; margin-bottom: 5px;">
+        <h4 style="text-align: center; margin-top: 0px; margin-bottom: 0px;">
           OR
         </h4>
       </div>
@@ -146,10 +146,11 @@ function getAnswerDiv(Question, objectNo, length) {
       <span class="newoption"></span>
       <span>$$answer$$</span>
     </span> 
-    <h4 style="text-align: center; margin-top: 5px; margin-bottom: 5px; margin-left: 0%">
+    </div>
+    <h4 style="text-align: center; margin-top: 0px; margin-bottom: 0px; margin-left: 0%">
           OR
     </h4>
-  </div>`;
+  `;
   }
 
   // Question.QuestionAnswer = Question.QuestionAnswer.replace(`uatportal`, 'staging.portal');
@@ -157,6 +158,11 @@ function getAnswerDiv(Question, objectNo, length) {
   answertext = answertext.replace("$$answer$$", Question.QuestionAnswer);
   return answertext;
 }
+
+// width= 20;
+// innerHeight
+// ismaxhe = true;
+
 
 async function getAPIResponse(EAPaperTemplateID, EAExamAssignID, url, token) {
   return new Promise((resolve, reject) => {
@@ -181,7 +187,7 @@ async function getAPIResponse(EAPaperTemplateID, EAExamAssignID, url, token) {
         resolve(data);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log("getAPIResponse==>", error);
       });
   });
 }
@@ -204,7 +210,7 @@ async function getHeaderInfo(StudentID, url, token) {
         resolve(data);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log("getHeaderInfoerror==>", error);
       });
   });
 }
@@ -232,7 +238,32 @@ async function getPaperTemplateInfo(EAPaperTemplateID, IsOMRPaper, url, token) {
         resolve(data);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log("getPaperTemplateInfo==>", error);
+      });
+  });
+}
+
+//getFontSize Font-family info
+
+async function getFontSizeFontFamilyInfo(EAPaperTemplateID, url, token) {
+  return new Promise((resolve, reject) => {
+
+
+    const config = {
+      method: 'get',
+      url: url + `PaperSetions/get_paper-FontSize-FontName?EAPaperId=${EAPaperTemplateID}`,
+      headers: {
+        'Authorization': 'Bearer ' + token,
+      }
+    };
+
+    axios(config)
+      .then(function (response) {
+        const data = JSON.stringify(response.data);
+        resolve(data);
+      })
+      .catch(function (error) {
+        console.log("getFontSizeFontFamilyInfoerror==>", error);
       });
   });
 }
@@ -256,7 +287,7 @@ async function getSectionInfo(EAPaperTemplateID, url, token) {
         resolve(data);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log("getSectionInfo==>", error);
       });
   });
 }
@@ -350,9 +381,12 @@ const getWaterMark = async (parsedHeaderData) => {
     `
         return { str, hasmark: true, cnt: parsedHeaderData.data.Text }
       } else {
+        top = 30;
+        left = 30;
+        width = 30;
         let str1 = ` <img  class="bgimg"
     src=${parsedHeaderData.data.WaterMarkUrl}
-    style="width: ${width}%; top: ${top}%; left: ${left}%; transform: rotate(${rotation}deg); opacity: ${opacity};position: fixed;z-index: -1;">`
+    style="display: block; margin-left: auto; margin-right: auto; width: ${width}%; top: ${top}%; left: ${left}%; transform: rotate(${rotation}deg); opacity: ${opacity};position: fixed;z-index: -1;">`
 
         return { str: str1, hasmark: false };
       }
@@ -364,7 +398,8 @@ const getWaterMark = async (parsedHeaderData) => {
   }
 }
 const processes = {};
-let FontSize = "18px";
+let FontSize = "18";
+let FontName = "Calibri";
 const generateAnswerPDF = async (req) => {
 
   const { EAPaperTemplateID, EAExamAssignID, url, token, StudentID, IsOMRPaper } = req.body;
@@ -378,14 +413,17 @@ const generateAnswerPDF = async (req) => {
     const headerData = await getHeaderInfo(StudentID, url, token)
     const templateInfoData = await getPaperTemplateInfo(EAPaperTemplateID, IsOMRPaper, url, token)
     const getSectionInfoData = await getSectionInfo(EAPaperTemplateID, url, token);
+    const fontSizeFontFamilyInfoData = await getFontSizeFontFamilyInfo(EAPaperTemplateID, url, token)
     let content = fs.readFileSync(`${__dirname}/index.html`, { encoding: 'utf8' })
     const parsedData = JSON.parse(data);
     const parsedHeaderData = JSON.parse(headerData);
     const parsedTemplateInfoData = JSON.parse(templateInfoData)
     const questtionlist = parsedData.data.QuestionInstruction;
     const paperTemplateInfo = parsedData.data.paperTemplateInfo;
+    const headerInstructionList = parsedData.data.HeaderInstruction;
     const sectionInfoData = JSON.parse(getSectionInfoData);
     const sectionDataArr = sectionInfoData.data
+    const fontSizeFontFamilyData = JSON.parse(fontSizeFontFamilyInfoData);
 
     // if ((sectionDataArr[0].FontSize != "") || (sectionDataArr[0].FontName != "")) {
     //   `<div class="dynamicStyle"
@@ -399,7 +437,11 @@ const generateAnswerPDF = async (req) => {
         let questionDiv = getQuestionForAnswerDiv(questtionlist[q].Questions[s]);
         let marksDiv = getMarksDiv(questtionlist[q].Questions[s]);
         //oneQuestionDiv = "<div class='qmarks' style='margin-bottom:20px'>" + questionDiv + marksDiv + "</div>";
-        oneQuestionDiv = "<div class='qmarks' style='margin-bottom:20px'>" + questionDiv + marksDiv + "</div>";
+        if (((questtionlist[q].Questions).length > (s + 1)) || ((questtionlist[q].Questions).length == (1))) {
+          oneQuestionDiv = "<div class='qmarks' style='margin-bottom:10px'>" + questionDiv + marksDiv + "</div>";
+        } else {
+          oneQuestionDiv = "<div class='' style='margin-bottom:10px'>" + questionDiv + "</div>";
+        }
         sectionDataArr.map((a) => {
           if (a.StartId === q && s === 0) {
             oneQuestionDiv = `<div style='text-align:center; font-weight: 700; text-decoration: underline;'>${a.Sections}</div>` + "<div class='qmarks' style='margin-bottom:20px'>" + questionDiv + marksDiv + "</div>";
@@ -422,14 +464,44 @@ const generateAnswerPDF = async (req) => {
     content = content.replace("$$SubjectName$$", parsedTemplateInfoData.data.paperTemplateInfo.SubjectName);
     content = content.replace("$$TotalMarks$$", parsedTemplateInfoData.data.paperTemplateInfo.TotalMarks)//totalMarks);
     content = content.replace("$$Duration$$", parsedTemplateInfoData.data.paperTemplateInfo.Duration);
-    content = content.replace("$$NegativeMarks$$", NegativeMarks);
     content = content.replace("$$PaperHeaderImage$$", parsedHeaderData.data.PaperHeaderImage);
     content = content.replace("$$PaperHeaderName$$", parsedHeaderData.data.PaperHeaderName);
     content = content.replace("$$PaperHeaderAddress$$", parsedHeaderData.data.PaperHeaderAddress);
+    if (NegativeMarks == 0) {
+      content = content.replace("negativeMark", '');
+    } else {
+      let str = `
+      <td style="
+                border: 1px solid #3a5077;
+                padding-left: 5px;
+                padding-right: 5px;
+              ">
+                        Negative Marks: ${NegativeMarks}
+                    </td>
+      `
+      content = content.replace("negativeMark", str);
+    }
     content = content.replace(
       "$$TotalQuestionCount$$",
       paperTemplateInfo.TotalQuestionCount
     );
+
+    if (headerInstructionList.length > 0) {
+      let instructionText = `<div _ngcontent-jxa-c16="" class="row ng-star-inserted">
+      <div _ngcontent-jxa-c16="" class="col-12 col-md-12 instructions ml-3" style="border-top: 1px solid #D1DAE6; margin: 10px; margin-bottom: 0">
+      <p _ngcontent-jxa-c16="" class="texthead py-2 m-0 " style="padding: 10px; color:#3a5077;">Instructions</p>
+      <div _ngcontent-jxa-c16="" class="steptext ng-star-inserted">
+      $$instructionOptions$$</div></div></div>`;
+      let instructionOptions = ''
+      for (let i = 0; i < headerInstructionList.length; i++) {
+        instructionOptions += `<div _ngcontent-jxa-c16="" class="steptext mr-1"> ${headerInstructionList[i]?.InstructionNumber}. ${headerInstructionList[i]?.Instruction}. 
+        </div>`
+      }
+      instructionText = instructionText.replace("$$instructionOptions$$", instructionOptions)
+      content = content.replace("$$instructions$$", instructionText)
+    } else {
+      content = content.replace("$$instructions$$", "")
+    }
 
     const waterMarkText = await getWaterMark(parsedHeaderData)
     if (waterMarkText) {
@@ -438,14 +510,50 @@ const generateAnswerPDF = async (req) => {
       content = content.replace("$$watermark$$", "")
     }
 
-    if ((sectionDataArr[0].FontSize != "") || (sectionDataArr[0].FontName != "")) {
-      FontSize = sectionDataArr[0].FontSize;
-      allquestionsDiv = `<div class="dynamicStyle"
-        style="font-size: ${FontSize}px !important; font-family: '${sectionDataArr[0].FontName}'!important;"> ${allquestionsDiv} </div>`;
+    //
+    // if (sectionDataArr.length > 0) {
+    //   if (((sectionDataArr[0].FontSize != "") && (sectionDataArr[0].FontName != ""))) {
+    //     FontSize = sectionDataArr[0].FontSize;
+    //     FontName = sectionDataArr[0].FontName;
+    //     allquestionsDiv = `<div class="dynamicStyle"
+    //     style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+    //   }
+    //   if (sectionDataArr[0].FontSize != "") {
+    //     FontSize = sectionDataArr[0].FontSize;
+    //     allquestionsDiv = `<div class="dynamicStyle"
+    //     style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+    //   }
+    //   if (sectionDataArr[0].FontName != "") {
+    //     FontName = sectionDataArr[0].FontName;
+    //     allquestionsDiv = `<div class="dynamicStyle"
+    //     style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+    //   }
+    // }
+
+    if (fontSizeFontFamilyData.data != null) {
+      if (((fontSizeFontFamilyData.data.FontSize != "") && (fontSizeFontFamilyData.data.FontName != ""))) {
+        FontSize = fontSizeFontFamilyData.data.FontSize;
+        FontName = fontSizeFontFamilyData.data.FontName;
+        allquestionsDiv = `<div class="dynamicStyle"
+          style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+      }
+      if (fontSizeFontFamilyData.data.FontSize != "") {
+        FontSize = fontSizeFontFamilyData.data.FontSize;
+        allquestionsDiv = `<div class="dynamicStyle"
+          style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+      }
+      if (fontSizeFontFamilyData.data.FontName != "") {
+        FontName = fontSizeFontFamilyData.data.FontName;
+        allquestionsDiv = `<div class="dynamicStyle"
+          style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+      }
     }
+    //
+
     content = content.replace("$$allquestionsDiv$$", allquestionsDiv);
 
     content = content.replace(/fontsize/g, `${FontSize}px`)
+    content = content.replace(/fontfamily/g, `${FontName}`)
     let uniqueName = EAPaperTemplateID;
     uniqueName = uniqueName + "answer"
     let reqPath = path.join(__dirname, `/${uniqueName}.html`);
@@ -516,6 +624,16 @@ const generateAnswerPDF = async (req) => {
         // width: width / 0.75,
         // scale: 1 / 0.75,
         // printBackground: true,
+        displayHeaderFooter: true,
+        headerTemplate: ``,
+        footerTemplate: `
+        <div style="width: 100%; font-size: 9px;
+        padding: 0px 0px 0; color: #bbb; position: relative;">
+        <div style="position: absolute; right: 5px; top: 5px;"><span class="pageNumber"></span>/<span class="totalPages"></span></div>
+    </div>
+        `,
+        // this is needed to prevent content from being placed over the footer
+        // margin: { bottom: '70px' },
         margin: { top: '0cm' },
         path: savePath
       })
@@ -546,14 +664,17 @@ const generateQuestionPDF = async (req) => {
     const headerData = await getHeaderInfo(StudentID, url, token)
     const templateInfoData = await getPaperTemplateInfo(EAPaperTemplateID, IsOMRPaper, url, token)
     const getSectionInfoData = await getSectionInfo(EAPaperTemplateID, url, token);
+    const fontSizeFontFamilyInfoData = await getFontSizeFontFamilyInfo(EAPaperTemplateID, url, token)
     let content = fs.readFileSync(`${__dirname}/index.html`, { encoding: 'utf8' })
     const parsedData = JSON.parse(data);
     const parsedHeaderData = JSON.parse(headerData);
     const parsedTemplateInfoData = JSON.parse(templateInfoData)
     const questtionlist = parsedData.data.QuestionInstruction;
     const paperTemplateInfo = parsedData.data.paperTemplateInfo;
+    const headerInstructionList = parsedData.data.HeaderInstruction;
     const sectionInfoData = JSON.parse(getSectionInfoData);
     const sectionDataArr = sectionInfoData.data
+    const fontSizeFontFamilyData = JSON.parse(fontSizeFontFamilyInfoData);
     // console.log("questtionlistlength->", questtionlist);
 
     let allquestionsDiv = "";
@@ -563,7 +684,11 @@ const generateQuestionPDF = async (req) => {
       for (let s = 0; s < (questtionlist[q].Questions || []).length; s++) {
         let questionDiv = getQuestionDiv(questtionlist[q].Questions[s], (s + 1), (questtionlist[q].Questions).length);
         let marksDiv = getMarksDiv(questtionlist[q].Questions[s]);
-        oneQuestionDiv = "<div class='qmarks' style='margin-bottom:20px'>" + questionDiv + marksDiv + "</div>";
+        if (((questtionlist[q].Questions).length > (s + 1)) || ((questtionlist[q].Questions).length == (1))) {
+          oneQuestionDiv = "<div class='qmarks' style='margin-bottom:10px'>" + questionDiv + marksDiv + "</div>";
+        } else {
+          oneQuestionDiv = "<div class='' style='margin-bottom:10px'>" + questionDiv + "</div>";
+        }
         sectionDataArr.map((a) => {
           if (a.StartId === q && s === 0) {
             oneQuestionDiv = `<div style='text-align:center; font-weight: 700; text-decoration: underline;'>${a.Sections}</div>` + "<div class='qmarks' style='margin-bottom:20px'>" + questionDiv + marksDiv + "</div>";
@@ -580,14 +705,45 @@ const generateQuestionPDF = async (req) => {
     content = content.replace("$$SubjectName$$", parsedTemplateInfoData.data.paperTemplateInfo.SubjectName);
     content = content.replace("$$TotalMarks$$", parsedTemplateInfoData.data.paperTemplateInfo.TotalMarks)//totalMarks);
     content = content.replace("$$Duration$$", parsedTemplateInfoData.data.paperTemplateInfo.Duration);
-    content = content.replace("$$NegativeMarks$$", NegativeMarks);
     content = content.replace("$$PaperHeaderImage$$", parsedHeaderData.data.PaperHeaderImage);
     content = content.replace("$$PaperHeaderName$$", parsedHeaderData.data.PaperHeaderName);
     content = content.replace("$$PaperHeaderAddress$$", parsedHeaderData.data.PaperHeaderAddress);
+    if (NegativeMarks == 0) {
+      content = content.replace("negativeMark", '');
+    } else {
+      let str = `
+      <td style="
+                border: 1px solid #3a5077;
+                padding-left: 5px;
+                padding-right: 5px;
+              ">
+                        Negative Marks: ${NegativeMarks}
+                    </td>
+      `
+      content = content.replace("negativeMark", str);
+    }
     content = content.replace(
       "$$TotalQuestionCount$$",
       paperTemplateInfo.TotalQuestionCount
     );
+
+    if (headerInstructionList.length > 0) {
+      let instructionText = `<div _ngcontent-jxa-c16="" class="row ng-star-inserted">
+      <div _ngcontent-jxa-c16="" class="col-12 col-md-12 instructions ml-3" style="border-top: 1px solid #D1DAE6; margin: 10px; margin-bottom: 0">
+      <p _ngcontent-jxa-c16="" class="texthead py-2 m-0 "style="padding: 10px; color:#3a5077; ">Instructions</p>
+      <div _ngcontent-jxa-c16="" class="steptext ng-star-inserted">
+      $$instructionOptions$$</div></div></div>`;
+      let instructionOptions = ''
+      for (let i = 0; i < headerInstructionList.length; i++) {
+        instructionOptions += `<div _ngcontent-jxa-c16="" class="steptext mr-1"> ${headerInstructionList[i]?.InstructionNumber}. ${headerInstructionList[i]?.Instruction}. 
+        </div>`
+      }
+      instructionText = instructionText.replace("$$instructionOptions$$", instructionOptions)
+      content = content.replace("$$instructions$$", instructionText)
+    } else {
+      content = content.replace("$$instructions$$", "")
+    }
+
     const waterMarkText = await getWaterMark(parsedHeaderData)
     if (waterMarkText) {
       content = content.replace("$$watermark$$", waterMarkText.str)
@@ -595,16 +751,51 @@ const generateQuestionPDF = async (req) => {
       content = content.replace("$$watermark$$", "")
     }
 
-    if ((sectionDataArr[0].FontSize != "") || (sectionDataArr[0].FontName != "")) {
-      FontSize = sectionDataArr[0].FontSize
-      allquestionsDiv = `<div class="dynamicStyle"
-        style="font-size: ${sectionDataArr[0].FontSize}px !important; font-family: '${sectionDataArr[0].FontName}'!important;"> ${allquestionsDiv} </div>`;
+    //
+    // if (sectionDataArr.length > 0) {
+    //   if (((sectionDataArr[0].FontSize != "") && (sectionDataArr[0].FontName != ""))) {
+    //     FontSize = sectionDataArr[0].FontSize;
+    //     FontName = sectionDataArr[0].FontName;
+    //     allquestionsDiv = `<div class="dynamicStyle"
+    //     style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+    //   }
+    //   if (sectionDataArr[0].FontSize != "") {
+    //     FontSize = sectionDataArr[0].FontSize;
+    //     allquestionsDiv = `<div class="dynamicStyle"
+    //     style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+    //   }
+    //   if (sectionDataArr[0].FontName != "") {
+    //     FontName = sectionDataArr[0].FontName;
+    //     allquestionsDiv = `<div class="dynamicStyle"
+    //     style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+    //   }
+    // }
+
+    if (fontSizeFontFamilyData.data != null) {
+      if (((fontSizeFontFamilyData.data.FontSize != "") && (fontSizeFontFamilyData.data.FontName != ""))) {
+        FontSize = fontSizeFontFamilyData.data.FontSize;
+        FontName = fontSizeFontFamilyData.data.FontName;
+        allquestionsDiv = `<div class="dynamicStyle"
+          style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+      }
+      if (fontSizeFontFamilyData.data.FontSize != "") {
+        FontSize = fontSizeFontFamilyData.data.FontSize;
+        allquestionsDiv = `<div class="dynamicStyle"
+          style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+      }
+      if (fontSizeFontFamilyData.data.FontName != "") {
+        FontName = fontSizeFontFamilyData.data.FontName;
+        allquestionsDiv = `<div class="dynamicStyle"
+          style="font-size: ${FontSize}px !important; font-family: '${FontName}'!important;"> ${allquestionsDiv} </div>`;
+      }
     }
+
+    //
 
     content = content.replace("$$allquestionsDiv$$", allquestionsDiv);
 
     content = content.replace(/fontsize/g, `${FontSize}px`)
-
+    content = content.replace(/fontfamily/g, `${FontName}`)
     let uniqueName = EAPaperTemplateID;
     uniqueName = uniqueName + "question";
     let reqPath = path.join(__dirname, `/${uniqueName}.html`);
@@ -668,6 +859,18 @@ const generateQuestionPDF = async (req) => {
         // format: 'A4',
         // landscape: true,
         // margin: { top: '0.5cm', bottom: '0.5cm' },//left: '0cm', right: '0cm',
+        //
+        displayHeaderFooter: true,
+        headerTemplate: ``,
+        footerTemplate: `
+        <div style="width: 100%; font-size: 9px;
+        padding: 0px 0px 0; color: #bbb; position: relative;">
+        <div style="position: absolute; right: 5px; top: 5px;"><span class="pageNumber"></span>/<span class="totalPages"></span></div>
+    </div>
+  `,
+        // this is needed to prevent content from being placed over the footer
+        // margin: { bottom: '70px' },
+        //
         path: savePath,
         margin: { top: '0cm' },
       })

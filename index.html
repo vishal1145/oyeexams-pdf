@@ -25,7 +25,7 @@
         }
 
         .main {
-            font-family: calibri;
+            font-family: fontfamily;
             margin: 2% 5% 2% 5%;
         }
 
@@ -57,7 +57,7 @@
 
         .headTitle {
             margin-block-start: 0em;
-            font-family: calibri;
+            font-family: fontfamily;
             text-align: center;
             color: #3a5077;
             font-size: 30px;
@@ -66,7 +66,7 @@
 
         .address {
             color: #3a5077;
-            font-family: calibri;
+            font-family: fontfamily;
             font-size: 15px;
             text-align: center !important;
             padding-left: 1rem !important;
@@ -178,7 +178,7 @@
             /* float: left; */
             /* display: flex; */
             color: #000;
-            font-size: fontsize;
+            font-size: fontsize !important;
             line-height: 26px;
             /* width: 90%; */
             /* margin-top: 20px !important; */
@@ -190,17 +190,38 @@
 
         .answerstyle {
             /* margin-top: 0.25rem !important; */
-            width: 100%;
+            /* width: 94%; */
             font-size: 18px;
+            display: flex;
+            margin-bottom: 10px;
             /* float: left; */
+        }
+
+        /* .answerstyle>span {
+            display: block;
+        } */
+
+        .answerstyle img {
+            max-height: 200px;
+            max-width: 200px;
+        }
+
+        .answerlast img {
+            max-height: 200px;
+            max-width: 200px;
         }
 
         .questionclass {
             float: left;
-            font-size: fontsize;
+            font-size: fontsize !important;
             line-height: 26px;
             font-weight: 700;
             /* padding-top: 16px; */
+        }
+
+        .questionclass::after {
+            content: " ";
+            white-space: pre;
         }
 
         .questionsstyle {
@@ -208,18 +229,23 @@
             flex-wrap: wrap;
             /* width: 100% !important; */
             /* max-width: 95%; */
-            font-size: fontsize;
+            font-size: fontsize !important;
             line-height: 26px !important;
             color: #000;
             /* font-size: 18px; */
             line-height: 26px;
         }
 
-        p>span,
-        span>p,
-        li>span,
+        p span,
+        p table,
+        div>span>table>tbody>tr>td>div>span,
+        div>span>table>tbody>tr>td>span>span,
+        span p,
+        li span,
+        li span,
         li,
-        li>p {
+        div span
+        li p, .answerlast {
             font-size: fontsize !important;
         }
 
@@ -236,14 +262,20 @@
             /* float: right !important; */
             /* margin-top: 40px !important; */
             display: flex;
+            margin-top: 5px;
         }
 
         .ansstyle {
             color: #000;
             min-width: 35px;
-            font-size: 18px;
-            line-height: 26px !important;
+            font-size: fontsize !important;
+            /* line-height: 26px !important; */
             font-weight: 700;
+        }
+
+        .ansstyle::after {
+            content: " ";
+            white-space: pre;
         }
 
         .explaination {
@@ -254,11 +286,11 @@
             padding-top: 0.5rem;
         }
 
-        .newoption {
+        /* .newoption {
             font-weight: 700;
             padding-left: 0.5rem !important;
             padding-right: 0.5rem !important;
-        }
+        } */
 
         .optiontop {
             margin: 0 auto 0 0;
@@ -316,15 +348,26 @@
 
         .qmarks {
             display: flex !important;
+            font-size: fontsize;
         }
 
         .bgtext {
             position: fixed;
+            text-align: center;
         }
 
         .bgtext::before {
             content: var(--my-watermark-var);
         }
+
+        .answerstyle table {
+            height: auto !important;
+        }
+
+        /* .answers-block img {
+            max-height: 150px;
+            width: auto;
+        } */
 
         /* .dynamicStyle {
             font-size: var(--my-fontsize-var) !important;
@@ -429,7 +472,7 @@
             color: #3a5077;
             font-size: 16px;
             font-weight: 500;
-            margin-left: 50% !important;
+            margin-left: auto;
             margin-top: 16px;
           ">
                 <tr style="border: 1px solid #3a5077">
@@ -447,13 +490,7 @@
               ">
                         Time: $$Duration$$ Mins
                     </td>
-                    <td style="
-                border: 1px solid #3a5077;
-                padding-left: 5px;
-                padding-right: 5px;
-              ">
-                        Negative Marks: $$NegativeMarks$$
-                    </td>
+                    negativeMark
                     <td style="
                 border: 1px solid #3a5077;
                 padding-left: 5px;
@@ -468,8 +505,8 @@
 
 
         $$watermark$$
-
-        <div style="border-top: 1px solid #d1dae6; margin-top: 1%; page-break-after: always;display:block; clear:both;">
+        $$instructions$$
+        <div style="border-top: 1px solid #d1dae6; padding-top: 1%; page-break-after: always;display:block; clear:both;">
             $$allquestionsDiv$$
         </div>
     </div>
