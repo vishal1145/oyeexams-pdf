@@ -647,7 +647,7 @@ const generateAnswerPDF = async (req) => {
     try {
       console.log("Log", "Staring pupeeter");
       const browser = await puppeteer.launch({
-        executablePath: "/usr/bin/chromium",
+        // executablePath: "/usr/bin/chromium",
         // executablePath: '/usr/bin/google-chrome-stable', //google-chrome',    //google-chrome-stable
         // headless: true,
         // args: ['--use-gl=egl'],
@@ -968,11 +968,11 @@ const generateQuestionPDF = async (req) => {
       console.log("Log", "Staring pupeeter");
       const browser = await puppeteer.launch({
         // executablePath: "/usr/bin/chromium",
-        executablePath: '/usr/bin/google-chrome-stable', //google-chrome,    //google-chrome-stable
+        //executablePath: '/usr/bin/google-chrome-stable', //google-chrome,    //google-chrome-stable
         // headless: true,
         // args: ['--use-gl=egl'],
 
-        args: ['--disable-gpu', '--no-sandbox'],
+        args: ['--no-sandbox'],
       });
       console.log("Log", "Pupeeter launch");
       const page = await browser.newPage();
