@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const puppeteer = require("puppeteer");
 const cors = require("cors");
 const axios = require("axios");
-const port = process.env.PORT || 3500;
+const port = parseInt(process.env.PORT) || 3500;
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
@@ -647,7 +647,7 @@ const generateAnswerPDF = async (req) => {
     try {
       console.log("Log", "Staring pupeeter");
       const browser = await puppeteer.launch({
-        // executablePath: "/usr/bin/chromium",
+        executablePath: "/usr/bin/chromium",
         // executablePath: '/usr/bin/google-chrome-stable', //google-chrome',    //google-chrome-stable
         // headless: true,
         // args: ['--use-gl=egl'],
@@ -659,7 +659,7 @@ const generateAnswerPDF = async (req) => {
         // args: [
         //   '--window-size=1920,1080',
         // ],
-        args: ['--disable-gpu', '--no-sandbox'],
+        args: ['--no-sandbox'],
       });
       console.log("Log", "Pupeeter launch");
       const page = await browser.newPage();
@@ -967,7 +967,7 @@ const generateQuestionPDF = async (req) => {
     try {
       console.log("Log", "Staring pupeeter");
       const browser = await puppeteer.launch({
-        // executablePath: "/usr/bin/chromium",
+        executablePath: "/usr/bin/chromium",
         //executablePath: '/usr/bin/google-chrome-stable', //google-chrome,    //google-chrome-stable
         // headless: true,
         // args: ['--use-gl=egl'],
