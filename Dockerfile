@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install gnupg wget -y && \
 
 RUN npm install
 
+RUN node index.js
+
 EXPOSE 3500
 
 CMD ["npm", "start"]
