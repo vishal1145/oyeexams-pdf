@@ -650,6 +650,7 @@ const generateAnswerPDF = async (req) => {
         // executablePath: "/usr/bin/chromium",
         // executablePath: '/usr/bin/google-chrome-stable',
         // executablePath: '/usr/bin/google-chrome',
+        executablePath: "/usr/bin/chromium-browser",
         // headless: true,
         // args: ['--use-gl=egl'],
         // defaultViewport: {
@@ -660,7 +661,7 @@ const generateAnswerPDF = async (req) => {
         // args: [
         //   '--window-size=1920,1080',
         // ],
-        args: ['--no-sandbox'],
+        args: ["--no-sandbox"],
       });
       console.log("Log", "Pupeeter launch");
       const page = await browser.newPage();
@@ -971,10 +972,11 @@ const generateQuestionPDF = async (req) => {
         // executablePath: "/usr/bin/chromium",
         //executablePath: '/usr/bin/google-chrome-stable',
         // executablePath: '/usr/bin/google-chrome',
+        executablePath: "/usr/bin/chromium-browser",
         // headless: true,
         // args: ['--use-gl=egl'],
 
-        args: ['--no-sandbox'],
+        args: ["--no-sandbox"],
       });
       console.log("Log", "Pupeeter launch");
       const page = await browser.newPage();
