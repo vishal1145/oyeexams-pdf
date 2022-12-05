@@ -728,7 +728,7 @@ const generateAnswerPDF = async (req) => {
       });
       console.log("Log", "mark process done");
       delete processes[EAPaperTemplateID];
-      // await browser.close();
+      await browser.close();
       return savePath;
     } catch (error) {
       console.log("Log", "In catch");
@@ -1049,7 +1049,7 @@ const generateQuestionPDF = async (req) => {
       });
       console.log("Log", "mark process done");
       delete processes[EAPaperTemplateID];
-      // await browser.close();
+      await browser.close();
       return savePath;
     } catch (error) {
       console.log("Log", "In catch");
