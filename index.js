@@ -360,35 +360,35 @@ const sendFileTOBrowser = async (res, pdfPath) => {
 
 const getWaterMark = async (parsedHeaderData) => {
   try {
-    let opacity = parseInt(parsedHeaderData.data.Opacity) / 100;
-    let width = parseInt(parsedHeaderData.data.Size);
-    let top = parsedHeaderData.data.Top;
-    let left = parsedHeaderData.data.Left;
-    let rotation = parsedHeaderData.data.Rotation;
-    let textCSS = JSON.parse(parsedHeaderData.data.TextCSS);
+    let opacity = parseInt(parsedHeaderData?.data?.Opacity) / 100;
+    let width = parseInt(parsedHeaderData?.data?.Size);
+    let top = parsedHeaderData?.data?.Top;
+    let left = parsedHeaderData?.data?.Left;
+    let rotation = parsedHeaderData?.data?.Rotation;
+    let textCSS = JSON.parse(parsedHeaderData?.data?.TextCSS);
     let fontStyle = "";
     let fontSize = 24;
     let textDecoration = "";
     let fontWeight = "";
     let color = "#000000";
-    if (textCSS.bold) fontWeight = "bolder";
-    if (textCSS.italic) fontStyle = "italic";
-    if (textCSS.underline) textDecoration = "underline";
-    if (textCSS.textcolor != "") color = textCSS.textcolor;
-    if (textCSS.textsize != "") fontSize = parseInt(textCSS.textsize);
-    if (parsedHeaderData.data.IncludeWaterMark === 1) {
-      if (parsedHeaderData.data.IS_TEXT_FILE === 1) {
+    if (textCSS?.bold) fontWeight = "bolder";
+    if (textCSS?.italic) fontStyle = "italic";
+    if (textCSS?.underline) textDecoration = "underline";
+    if (textCSS?.textcolor != "") color = textCSS?.textcolor;
+    if (textCSS?.textsize != "") fontSize = parseInt(textCSS?.textsize);
+    if (parsedHeaderData?.data?.IncludeWaterMark === 1) {
+      if (parsedHeaderData?.data?.IS_TEXT_FILE === 1) {
         let str = `     
     <span class="bgtext"
-        style="--my-watermark-var: '${parsedHeaderData.data.Text}'; transform: rotate(${rotation}deg); font-style: ${fontStyle}; top: ${top}%; left: ${left}%; font-size: ${fontSize}px; text-decoration: ${textDecoration}; font-weight: ${fontWeight}; color: ${color}; opacity: ${opacity};"></span>
+        style="--my-watermark-var: '${parsedHeaderData?.data?.Text}'; transform: rotate(${rotation}deg); font-style: ${fontStyle}; top: ${top}%; left: ${left}%; font-size: ${fontSize}px; text-decoration: ${textDecoration}; font-weight: ${fontWeight}; color: ${color}; opacity: ${opacity};"></span>
     `;
-        return { str, hasmark: true, cnt: parsedHeaderData.data.Text };
+        return { str, hasmark: true, cnt: parsedHeaderData?.data?.Text };
       } else {
         top = 30;
         left = 30;
         width = 30;
         let str1 = ` <img  class="bgimg"
-    src=${parsedHeaderData.data.WaterMarkUrl}
+    src=${parsedHeaderData?.data?.WaterMarkUrl}
     style="display: block; margin-left: auto; margin-right: auto; width: ${width}%; top: ${top}%; left: ${left}%; transform: rotate(${rotation}deg); opacity: ${opacity};position: fixed;z-index: -1;">`;
 
         return { str: str1, hasmark: false };
