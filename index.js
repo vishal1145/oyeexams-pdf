@@ -511,35 +511,35 @@ const generateAnswerPDF = async (req) => {
     // console.log("allquestionsDiv", allquestionsDiv);
     content = content.replace(
       "$$examname$$",
-      parsedTemplateInfoData.data.paperTemplateInfo.Name
+      parsedTemplateInfoData?.data?.paperTemplateInfo?.Name
     ); //paperTemplateInfo.Name);
     content = content.replace(
       "$$ClassName$$",
-      parsedTemplateInfoData.data.paperTemplateInfo.ClassName
+      parsedTemplateInfoData?.data?.paperTemplateInfo?.ClassName
     );
     content = content.replace(
       "$$SubjectName$$",
-      parsedTemplateInfoData.data.paperTemplateInfo.SubjectName
+      parsedTemplateInfoData?.data?.paperTemplateInfo?.SubjectName
     );
     content = content.replace(
       "$$TotalMarks$$",
-      parsedTemplateInfoData.data.paperTemplateInfo.TotalMarks
+      parsedTemplateInfoData?.data?.paperTemplateInfo?.TotalMarks
     ); //totalMarks);
     content = content.replace(
       "$$Duration$$",
-      parsedTemplateInfoData.data.paperTemplateInfo.Duration
+      parsedTemplateInfoData?.data?.paperTemplateInfo?.Duration
     );
     content = content.replace(
       "$$PaperHeaderImage$$",
-      parsedHeaderData.data.PaperHeaderImage
+      parsedHeaderData?.data?.PaperHeaderImage
     );
     content = content.replace(
       "$$PaperHeaderName$$",
-      parsedHeaderData.data.PaperHeaderName
+      parsedHeaderData?.data?.PaperHeaderName
     );
     content = content.replace(
       "$$PaperHeaderAddress$$",
-      parsedHeaderData.data.PaperHeaderAddress
+      parsedHeaderData?.data?.PaperHeaderAddress
     );
     if (NegativeMarks == 0) {
       content = content.replace("negativeMark", "");
@@ -836,35 +836,35 @@ const generateQuestionPDF = async (req) => {
     // console.log("allquestionsDiv", allquestionsDiv);
     content = content.replace(
       "$$examname$$",
-      parsedTemplateInfoData.data.paperTemplateInfo.Name
+      parsedTemplateInfoData?.data?.paperTemplateInfo?.Name
     ); //paperTemplateInfo.Name);
     content = content.replace(
       "$$ClassName$$",
-      parsedTemplateInfoData.data.paperTemplateInfo.ClassName
+      parsedTemplateInfoData?.data?.paperTemplateInfo?.ClassName
     );
     content = content.replace(
       "$$SubjectName$$",
-      parsedTemplateInfoData.data.paperTemplateInfo.SubjectName
+      parsedTemplateInfoData?.data?.paperTemplateInfo?.SubjectName
     );
     content = content.replace(
       "$$TotalMarks$$",
-      parsedTemplateInfoData.data.paperTemplateInfo.TotalMarks
+      parsedTemplateInfoData?.data?.paperTemplateInfo?.TotalMarks
     ); //totalMarks);
     content = content.replace(
       "$$Duration$$",
-      parsedTemplateInfoData.data.paperTemplateInfo.Duration
+      parsedTemplateInfoData?.data?.paperTemplateInfo?.Duration
     );
     content = content.replace(
       "$$PaperHeaderImage$$",
-      parsedHeaderData.data.PaperHeaderImage
+      parsedHeaderData?.data?.PaperHeaderImage
     );
     content = content.replace(
       "$$PaperHeaderName$$",
-      parsedHeaderData.data.PaperHeaderName
+      parsedHeaderData?.data?.PaperHeaderName
     );
     content = content.replace(
       "$$PaperHeaderAddress$$",
-      parsedHeaderData.data.PaperHeaderAddress
+      parsedHeaderData?.data?.PaperHeaderAddress
     );
     if (NegativeMarks == 0) {
       content = content.replace("negativeMark", "");
