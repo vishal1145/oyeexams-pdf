@@ -365,7 +365,13 @@ const getWaterMark = async (parsedHeaderData) => {
     let top = parsedHeaderData?.data?.Top;
     let left = parsedHeaderData?.data?.Left;
     let rotation = parsedHeaderData?.data?.Rotation;
-    let textCSS = JSON.parse(parsedHeaderData?.data?.TextCSS);
+    let textCSS = {}
+    try {
+      textCSS = JSON.parse(parsedHeaderData?.data?.TextCSS);
+    } catch (error) {
+      console.log("textCSSError", textCSS);
+    }
+    
     let fontStyle = "";
     let fontSize = 24;
     let textDecoration = "";
