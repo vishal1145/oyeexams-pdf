@@ -8,6 +8,7 @@ const cors = require("cors");
 const axios = require("axios");
 const port = parseInt(process.env.PORT) || 3500;
 const app = express();
+let CronJob = require("cron").CronJob;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 // app.use(express.static("/"));
@@ -1067,6 +1068,29 @@ const generateQuestionPDF = async (req) => {
     console.log(error);
   }
 };
+
+let removeDataCronJob = new CronJob("42 18 * * *", async function () {
+  fs.readdir(__dirname, function (err, files) {
+    const EXTENSION = '.pdf';
+
+    const targetFiles = files.filter(file => {
+      return (path.extname(file).toLowerCase() === EXTENSION) || (path.extname(file).toLowerCase() === ".html" && file != "index.html" && file != "abc.html" && file != "test.html")
+    });
+    for (let i = 0; i < targetFiles.length; i++) {
+      let { birthtime } = fs.statSync(targetFiles[i])
+      let currenDate = new Date()
+      let expirationDate = currenDate.setDate(currenDate.getDate() - 7);
+      console.log(birthtime)
+      if (new Date(birthtime) <= new Date(expirationDate)) {
+        fs.unlink(path.join(__dirname, targetFiles[i]), () => {
+          console.log(targetFiles[i] + " - deleted")
+        })
+      }
+    }
+    console.log(targetFiles)
+  })
+});
+removeDataCronJob.start();
 
 app.post("/remove-pdf", async (req, res) => {
   const { EAPaperTemplateID } = req.body;
