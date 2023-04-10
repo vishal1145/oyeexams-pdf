@@ -197,11 +197,11 @@ async function getAPIResponse(EAPaperTemplateID, EAExamAssignID, url, token) {
   });
 }
 
-async function getHeaderInfo(StudentID, url, token) {
+async function getHeaderInfo(StudentID,EAPaperTemplateID, url, token) {
   return new Promise((resolve, reject) => {
     const config = {
       method: "post",
-      url: url + `staff/get_header_info?StudentID=${StudentID}`,
+      url: url + `staff/get_header_info?StudentID=${StudentID}&EAPaperId=${EAPaperTemplateID}`,
       headers: {
         Authorization: "Bearer " + token,
         "Content-Type": "application/json",
@@ -301,8 +301,8 @@ app.post("/get-pdf", async (req, res) => {
   console.log("in get-pdf");
   if (req.body.isShowAnswer) {
     let EAPaperTemplateID = req.body.EAPaperTemplateID;
-    EAPaperTemplateID = EAPaperTemplateID + "answer";
-    const pdfPath = `${__dirname}/${EAPaperTemplateID}.pdf`;
+    let EAPaperTemplateIDPath = EAPaperTemplateID + "answer";
+    const pdfPath = `${__dirname}/${EAPaperTemplateIDPath}.pdf`;
     if (fs.existsSync(pdfPath)) {
       sendFileTOBrowser(res, pdfPath);
     } else {
@@ -313,8 +313,8 @@ app.post("/get-pdf", async (req, res) => {
     }
   } else {
     let EAPaperTemplateID = req.body.EAPaperTemplateID;
-    EAPaperTemplateID = EAPaperTemplateID + "question";
-    const pdfPath = `${__dirname}/${EAPaperTemplateID}.pdf`;
+    let EAPaperTemplateIDPath = EAPaperTemplateID + "question";
+    const pdfPath = `${__dirname}/${EAPaperTemplateIDPath}.pdf`;
     if (fs.existsSync(pdfPath)) {
       try {
         sendFileTOBrowser(res, pdfPath);
@@ -431,7 +431,7 @@ const generateAnswerPDF = async (req) => {
       url,
       token
     );
-    const headerData = await getHeaderInfo(StudentID, url, token);
+    const headerData = await getHeaderInfo(StudentID,EAPaperTemplateID, url, token);
     const templateInfoData = await getPaperTemplateInfo(
       EAPaperTemplateID,
       IsOMRPaper,
@@ -768,7 +768,7 @@ const generateQuestionPDF = async (req) => {
       url,
       token
     );
-    const headerData = await getHeaderInfo(StudentID, url, token);
+    const headerData = await getHeaderInfo(StudentID,EAPaperTemplateID, url, token);
     const templateInfoData = await getPaperTemplateInfo(
       EAPaperTemplateID,
       IsOMRPaper,
