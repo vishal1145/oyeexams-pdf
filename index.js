@@ -790,7 +790,7 @@ const generateQuestionPDF = async (req) => {
     });
     const parsedData = JSON.parse(data);
     let parsedHeaderData = JSON.parse(headerData);
-    if(!parsedHeaderData)
+    if(!parsedHeaderData.data)
     {
       parsedHeaderData = req.body.paperHeaderData
     }
