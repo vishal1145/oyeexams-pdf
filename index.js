@@ -789,7 +789,11 @@ const generateQuestionPDF = async (req) => {
       encoding: "utf8",
     });
     const parsedData = JSON.parse(data);
-    const parsedHeaderData = JSON.parse(headerData);
+    let parsedHeaderData = JSON.parse(headerData);
+    if(!parsedHeaderData)
+    {
+      parsedHeaderData = req.body.paperHeaderData
+    }
     const parsedTemplateInfoData = JSON.parse(templateInfoData);
     const questtionlist = parsedData.data.QuestionInstruction;
     const paperTemplateInfo = parsedData.data.paperTemplateInfo;
@@ -1114,7 +1118,7 @@ app.post("/remove-pdf", async (req, res) => {
       fs.unlinkSync(pdfPath2);
       fs.unlinkSync(htmlPath2);
     } else {
-      res.send({ success: true, msg: "file deleted" });
+      // res.send({ success: true, msg: "file deleted" });
     }
   } catch (error) {
     console.log(error);
