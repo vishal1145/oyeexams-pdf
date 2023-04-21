@@ -452,7 +452,13 @@ const generateAnswerPDF = async (req) => {
       encoding: "utf8",
     });
     const parsedData = JSON.parse(data);
-    const parsedHeaderData = JSON.parse(headerData);
+    let parsedHeaderData = JSON.parse(headerData);
+    let HeaderData = parsedHeaderData.data
+
+    if(!HeaderData||!HeaderData.PaperHeaderAddress||!HeaderData.PaperHeaderImage||!HeaderData.PaperHeaderName||HeaderData.WaterMarkUrl==='undefined')
+    {
+      parsedHeaderData = req.body.paperHeaderData
+    }
     const parsedTemplateInfoData = JSON.parse(templateInfoData);
     const questtionlist = parsedData.data.QuestionInstruction;
     const paperTemplateInfo = parsedData.data.paperTemplateInfo;
