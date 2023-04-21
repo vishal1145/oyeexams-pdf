@@ -455,7 +455,7 @@ const generateAnswerPDF = async (req) => {
     let parsedHeaderData = JSON.parse(headerData);
     let HeaderData = parsedHeaderData.data
 
-    if(!HeaderData||!HeaderData.PaperHeaderAddress||!HeaderData.PaperHeaderImage||!HeaderData.PaperHeaderName||HeaderData.WaterMarkUrl==='undefined')
+    if(!HeaderData||!HeaderData.PaperHeaderAddress||!HeaderData.PaperHeaderImage||!HeaderData.PaperHeaderName||(HeaderData.WaterMarkUrl==='undefined' && HeaderData.IS_TEXT_FILE ===0))
     {
       parsedHeaderData = req.body.paperHeaderData
     }
@@ -797,7 +797,7 @@ const generateQuestionPDF = async (req) => {
     const parsedData = JSON.parse(data);
     let parsedHeaderData = JSON.parse(headerData);
     let HeaderData = parsedHeaderData.data
-    if(!HeaderData||!HeaderData.PaperHeaderAddress||!HeaderData.PaperHeaderImage||!HeaderData.PaperHeaderName||HeaderData.WaterMarkUrl==='undefined')
+    if(!HeaderData||!HeaderData.PaperHeaderAddress||!HeaderData.PaperHeaderImage||!HeaderData.PaperHeaderName||(HeaderData.WaterMarkUrl==='undefined' && HeaderData.IS_TEXT_FILE ===0))
     {
       parsedHeaderData = req.body.paperHeaderData
     }
