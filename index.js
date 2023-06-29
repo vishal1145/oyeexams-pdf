@@ -452,7 +452,13 @@ const generateAnswerPDF = async (req) => {
       encoding: "utf8",
     });
     const parsedData = JSON.parse(data);
-    const parsedHeaderData = JSON.parse(headerData);
+    let parsedHeaderData = JSON.parse(headerData);
+    let HeaderData = parsedHeaderData.data
+
+    if(!HeaderData||!HeaderData.PaperHeaderAddress||!HeaderData.PaperHeaderImage||!HeaderData.PaperHeaderName||(HeaderData.WaterMarkUrl==='undefined' && HeaderData.IS_TEXT_FILE ===0))
+    {
+      parsedHeaderData = req.body.paperHeaderData
+    }
     const parsedTemplateInfoData = JSON.parse(templateInfoData);
     const questtionlist = parsedData.data.QuestionInstruction;
     const paperTemplateInfo = parsedData.data.paperTemplateInfo;
@@ -791,7 +797,7 @@ const generateQuestionPDF = async (req) => {
     const parsedData = JSON.parse(data);
     let parsedHeaderData = JSON.parse(headerData);
     let HeaderData = parsedHeaderData.data
-    if(!HeaderData||!HeaderData.PaperHeaderAddress||!HeaderData.PaperHeaderImage||!HeaderData.PaperHeaderName||HeaderData.WaterMarkUrl==='undefined')
+    if(!HeaderData||!HeaderData.PaperHeaderAddress||!HeaderData.PaperHeaderImage||!HeaderData.PaperHeaderName||(HeaderData.WaterMarkUrl==='undefined' && HeaderData.IS_TEXT_FILE ===0))
     {
       parsedHeaderData = req.body.paperHeaderData
     }
