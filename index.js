@@ -1003,7 +1003,7 @@ const generateQuestionPDF = async (req) => {
         // headless: true,
         // args: ['--use-gl=egl'],
 
-        args: ["--no-sandbox"],
+        args: ["--no-sandbox", "--font-render-hinting=none"],
       });
       console.log("Log", "Pupeeter launch");
       const page = await browser.newPage();
