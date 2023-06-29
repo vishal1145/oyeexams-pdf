@@ -661,7 +661,7 @@ const generateAnswerPDF = async (req) => {
         // executablePath: "/usr/bin/chromium",
         // executablePath: '/usr/bin/google-chrome-stable',
         // executablePath: '/usr/bin/google-chrome',
-        executablePath: "/usr/bin/chromium-browser",
+        executablePath: "Users\parsh.DESKTOP-2HFBVMK\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\chromium",
         // headless: true,
         // args: ['--use-gl=egl'],
         // defaultViewport: {
@@ -795,6 +795,7 @@ const generateQuestionPDF = async (req) => {
     {
       parsedHeaderData = req.body.paperHeaderData
     }
+    
     const parsedTemplateInfoData = JSON.parse(templateInfoData);
     const questtionlist = parsedData.data.QuestionInstruction;
     const paperTemplateInfo = parsedData.data.paperTemplateInfo;
@@ -1006,6 +1007,16 @@ const generateQuestionPDF = async (req) => {
       const bufcontent = fs.readFileSync(reqPath, {
         encoding: "utf8",
         flag: "r",
+      });
+
+      await page.evaluateOnNewDocument(() => {
+        const style = document.createElement("style");
+        style.textContent = `
+          * {
+            font-family: 'Noto Sans Devanagari', 'Mangal', 'Devanagari', sans-serif;
+          }
+        `;
+        document.head.appendChild(style);
       });
 
       // let base64 = Buffer.from(bufcontent, "utf8").toString("base64");
