@@ -495,7 +495,14 @@ const generateAnswerPDF = async (req) => {
         let questionDiv = getQuestionForAnswerDiv(
           questtionlist[q].Questions[s]
         );
-        let marksDiv = getMarksDiv(questtionlist[q].Questions[s]);
+        let marksDiv; 
+        
+        if (paperType == 4) {
+          marksDiv = getMarksDivForWorksheet(questtionlist[q].Questions[s]);
+        } else {
+          marksDiv = getMarksDiv(questtionlist[q].Questions[s]);
+        }
+        
         //oneQuestionDiv = "<div class='qmarks' style='margin-bottom:20px'>" + questionDiv + marksDiv + "</div>";
         if (
           questtionlist[q].Questions.length > s + 1 ||
