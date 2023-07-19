@@ -690,7 +690,7 @@ const generateAnswerPDF = async (req) => {
         // executablePath: "/usr/bin/chromium",
         // executablePath: '/usr/bin/google-chrome-stable',
         // executablePath: '/usr/bin/google-chrome',
-        executablePath: "Users\parsh.DESKTOP-2HFBVMK\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\chromium",
+        executablePath: "/usr/bin/chromium-browser",        
         // headless: true,
         // args: ['--use-gl=egl'],
         // defaultViewport: {
