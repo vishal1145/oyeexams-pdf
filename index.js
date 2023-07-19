@@ -134,6 +134,14 @@ function getMarksDiv(Question) {
   marktext = marktext.replace("$$marks$$", Question.Marks);
   return marktext;
 }
+function getMarksDivForWorksheet(Question) {
+  let marktext = `<div class="marks">
+  <span class="markone">$$marks$$</span>
+ 
+</div>`;
+  marktext = marktext.replace("$$marks$$", "");
+  return marktext;
+}
 
 function getAnswerDiv(Question, objectNo, length) {
   let answertext;
@@ -418,6 +426,7 @@ const generateAnswerPDF = async (req) => {
     token,
     StudentID,
     IsOMRPaper,
+    paperType
   } = req.body;
   if (processes[EAPaperTemplateID]) {
     return;
@@ -447,10 +456,17 @@ const generateAnswerPDF = async (req) => {
       EAPaperTemplateID,
       url,
       token
-    );
-    let content = fs.readFileSync(`${__dirname}/index.html`, {
-      encoding: "utf8",
-    });
+    ); 
+    let content;
+    if (paperType == 4) {
+      content = fs.readFileSync(`${__dirname}/indexForWorksheet.html`, {
+        encoding: "utf8",
+      });
+    } else {
+      content = fs.readFileSync(`${__dirname}/index.html`, {
+        encoding: "utf8",
+      });
+    }
     const parsedData = JSON.parse(data);
     let parsedHeaderData = JSON.parse(headerData);
     let HeaderData = parsedHeaderData.data
@@ -762,6 +778,7 @@ const generateQuestionPDF = async (req) => {
     token,
     StudentID,
     IsOMRPaper,
+    paperType
   } = req.body;
   if (processes[EAPaperTemplateID]) {
     return;
@@ -791,9 +808,16 @@ const generateQuestionPDF = async (req) => {
       url,
       token
     );
-    let content = fs.readFileSync(`${__dirname}/index.html`, {
-      encoding: "utf8",
-    });
+    let content;
+    if (paperType == 4) {
+      content = fs.readFileSync(`${__dirname}/indexForWorksheet.html`, {
+        encoding: "utf8",
+      });
+    } else {
+      content = fs.readFileSync(`${__dirname}/index.html`, {
+        encoding: "utf8",
+      });
+    }
     const parsedData = JSON.parse(data);
     let parsedHeaderData = JSON.parse(headerData);
     let HeaderData = parsedHeaderData.data
@@ -821,7 +845,14 @@ const generateQuestionPDF = async (req) => {
           s + 1,
           questtionlist[q].Questions.length
         );
-        let marksDiv = getMarksDiv(questtionlist[q].Questions[s]);
+        let marksDiv; 
+        
+        if (paperType == 4) {
+          marksDiv = getMarksDivForWorksheet(questtionlist[q].Questions[s]);
+        } else {
+          marksDiv = getMarksDiv(questtionlist[q].Questions[s]);
+        }
+        
         if (
           questtionlist[q].Questions.length > s + 1 ||
           questtionlist[q].Questions.length == 1
@@ -837,6 +868,7 @@ const generateQuestionPDF = async (req) => {
             questionDiv +
             "</div>";
         }
+        
         sectionDataArr.map((a) => {
           if (a.StartId === q && s === 0) {
             oneQuestionDiv =
@@ -847,6 +879,7 @@ const generateQuestionPDF = async (req) => {
               "</div>";
           }
         });
+        
         allquestionsDiv = allquestionsDiv + oneQuestionDiv;
       }
     }
