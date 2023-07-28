@@ -97,6 +97,11 @@ function getQuestionDiv(Question, objectNo, length) {
       options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag);
   }
   text = text.replace("$$options$$", options);
+  Question.QuestionDescription = Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
+  const liStyles = 'font-size: 14px; font-family: verdana; line-height: 3; vertical-align: middle;';
+
+  // Use regex to find and replace the style attributes in <span> tags
+  Question.QuestionDescription = Question.QuestionDescription.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
   text = text.replace("$$questionText$$", Question.QuestionDescription);
   text = text.replace("$$queNumber$$", Question.QueNumber);
   return text;
@@ -399,9 +404,9 @@ const getWaterMark = async (parsedHeaderData) => {
     `;
         return { str, hasmark: true, cnt: parsedHeaderData?.data?.Text };
       } else {
-        top = 30;
-        left = 30;
-        width = 30;
+        // top = 30;
+        // left = 30;
+        // width = 30;
         let str1 = ` <img  class="bgimg"
     src=${parsedHeaderData?.data?.WaterMarkUrl}
     style="display: block; margin-left: auto; margin-right: auto; width: ${width}%; top: ${top}%; left: ${left}%; transform: rotate(${rotation}deg); opacity: ${opacity};position: fixed;z-index: -1;">`;
