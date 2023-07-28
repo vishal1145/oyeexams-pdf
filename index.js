@@ -126,6 +126,9 @@ function getQuestionForAnswerDiv(Question) {
       options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag);
   }
   text = text.replace("$$options$$", options);
+  Question.QuestionDescription = Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
+  const liStyles = 'font-size: 14px; font-family: verdana; line-height: 3; vertical-align: middle;';
+  Question.QuestionDescription = Question.QuestionDescription.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
   text = text.replace("$$questionText$$", Question.QuestionDescription);
   text = text.replace("$$queNumber$$", Question.QueNumber);
   return text;
@@ -173,7 +176,9 @@ function getAnswerDiv(Question, objectNo, length) {
   }
 
   // Question.QuestionAnswer = Question.QuestionAnswer.replace(`uatportal`, 'staging.portal');
-
+  Question.QuestionAnswer = Question.QuestionAnswer.replaceAll(/\\frac/g, "\\dfrac");
+  const liStyles = 'font-size: 14px; font-family: verdana; line-height: 3; vertical-align: middle;';
+  Question.QuestionAnswer = Question.QuestionAnswer.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
   answertext = answertext.replace("$$answer$$", Question.QuestionAnswer);
   return answertext;
 }
