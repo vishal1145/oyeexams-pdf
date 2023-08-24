@@ -1146,7 +1146,7 @@ let removeDataCronJob = new CronJob("42 18 * * *", async function () {
     const EXTENSION = '.pdf';
 
     const targetFiles = files.filter(file => {
-      return (path.extname(file).toLowerCase() === EXTENSION) || (path.extname(file).toLowerCase() === ".html" && file != "index.html" && file != "abc.html" && file != "test.html")
+      return (path.extname(file).toLowerCase() === EXTENSION) || (path.extname(file).toLowerCase() === ".html" && file != "index.html" && file != "indexForWorksheet.html"  && file != "abc.html" && file != "test.html")
     });
     for (let i = 0; i < targetFiles.length; i++) {
       let { birthtime } = fs.statSync(targetFiles[i])
