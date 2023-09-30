@@ -156,12 +156,12 @@ function getAnswerDiv(Question, objectNo, length) {
   let answertext;
   if (objectNo == length) {
     answertext = `<div class="answerstyle">
-    <span class="ansstyle"> Ans:</span>
+    <span class="ansstyle"> Ans: </span> <span>$$correctOption$$</span><br/>
     <span style="display: inline-block; vertical-align: top;">$$answer$$</span>
   </div>`;
   } else {
     answertext = `<div class="answerstyle">
-    <span class="ansstyle"> Ans:</span>
+    <span class="ansstyle"> Ans: </span> <span>$$correctOption$$</span><br/>
     <span style="width: 92%">
       <span class="newoption"></span>
       <span>$$answer$$</span>
@@ -174,9 +174,19 @@ function getAnswerDiv(Question, objectNo, length) {
   }
   var newStyle = 'style="list-style-type: lower-alpha;margin:0;padding: 0;margin-left:15px;"';
 
+  let correctOption = Question.lstOption.find((res)=>res.IsCorrect)
+
+  correctOption = `<b>${correctOption.OptionSlag}</b> ${correctOption.OptionValue}`
+
+  correctOption = correctOption.replace(/<\/?p>/g, '');
+
+  answertext = answertext.replace("$$correctOption$$", correctOption);
+
   Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>/, function(match) {
     return match.replace(/style="[^"]*"/, newStyle);
   });
+
+  Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>[\s\S]*?<\/ol>/g, '');
 
   Question.QuestionAnswer = Question.QuestionAnswer.trim().replace(/\n\s*\n/g, '\n')
 
