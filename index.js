@@ -97,7 +97,7 @@ function getQuestionDiv(Question, objectNo, length) {
       options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag);
   }
   text = text.replace("$$options$$", options);
-  // Question.QuestionDescription = Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
+  Question.QuestionDescription = Question.QuestionAnswer.split('\\frac').join('\\dfrac')//Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
   const liStyles = 'font-size: 14px; font-family: verdana; line-height: 3; vertical-align: middle;';
 
   // Use regex to find and replace the style attributes in <span> tags
@@ -127,8 +127,8 @@ function getQuestionForAnswerDiv(Question) {
   }
   text = text.replace("$$options$$", options);
   // Question.QuestionDescription = Question.QuestionDescription.toString()
-  // Question.QuestionDescription = Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
-  const liStyles = 'font-size: 18px; font-family: verdana; line-height: 1.5; vertical-align: top;';
+  Question.QuestionDescription = Question.QuestionDescription.split('\\frac').join('\\dfrac')//Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
+  const liStyles = 'font-size: 18px; font-family: verdana; line-height: 3; vertical-align: top;';
   Question.QuestionDescription = Question.QuestionDescription.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
   text = text.replace("$$questionText$$", Question.QuestionDescription);
   text = text.replace("$$queNumber$$", Question.QueNumber);
@@ -195,8 +195,8 @@ function getAnswerDiv(Question, objectNo, length) {
   Question.QuestionAnswer =   Question.QuestionAnswer.replace(/<\/ol>/, '</ol></span>');
 
   // Question.QuestionAnswer = Question.QuestionAnswer.replace(`uatportal`, 'staging.portal');
-  // Question.QuestionAnswer = Question.QuestionAnswer.replaceAll(/\\frac/g, "\\dfrac");
-  const liStyles = 'font-size: 18px; font-family: verdana; line-height: 1.2; vertical-align: top;';
+  Question.QuestionAnswer = Question.QuestionAnswer.split('\\frac').join('\\dfrac')  //Question.QuestionAnswer.replaceAll(/\\frac/g, "\\dfrac");
+  const liStyles = 'font-size: 18px; font-family: verdana; line-height: 3; vertical-align: top;';
   Question.QuestionAnswer = Question.QuestionAnswer.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
   answertext = answertext.replace("$$answer$$", Question.QuestionAnswer);
   return answertext;
