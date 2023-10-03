@@ -97,7 +97,7 @@ function getQuestionDiv(Question, objectNo, length) {
       options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag);
   }
   text = text.replace("$$options$$", options);
-  Question.QuestionDescription = Question.QuestionAnswer.split('\\frac').join('\\dfrac')//Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
+  Question.QuestionDescription = Question.QuestionDescription.split('\\frac').join('\\dfrac')//Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
   const liStyles = 'font-size: 14px; font-family: verdana; line-height: 3; vertical-align: middle;';
 
   // Use regex to find and replace the style attributes in <span> tags
