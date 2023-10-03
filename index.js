@@ -125,10 +125,11 @@ function getQuestionForAnswerDiv(Question) {
     options =
       options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag);
   }
+  options = options.split('\\frac').join('\\dfrac')
   text = text.replace("$$options$$", options);
   // Question.QuestionDescription = Question.QuestionDescription.toString()
   Question.QuestionDescription = Question.QuestionDescription.split('\\frac').join('\\dfrac')//Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
-  const liStyles = 'font-size: 18px; font-family: verdana; line-height: 3; vertical-align: top;';
+  const liStyles = 'font-size: 14px; font-family: verdana; line-height: 1.5; vertical-align: top;';
   Question.QuestionDescription = Question.QuestionDescription.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
   text = text.replace("$$questionText$$", Question.QuestionDescription);
   text = text.replace("$$queNumber$$", Question.QueNumber);
@@ -152,9 +153,13 @@ function getMarksDivForWorksheet(Question) {
   return marktext;
 }
 
-function getAnswerDiv(Question, objectNo, length) {
+function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
   let answertext;
-  if (objectNo == length) {
+  if(!IsOMRPaper){
+    answertext = `<div class="answerstyle">
+    <span class="ansstyle"> Ans: </span> $$answer$$
+    </div>`;
+  }else if (objectNo == length) {
     answertext = `<div class="answerstyle">
     <span class="ansstyle"> Ans: </span> <span>$$correctOption$$</span><br/>
     <span style="display: inline-block; vertical-align: top;">$$answer$$</span>
@@ -174,7 +179,10 @@ function getAnswerDiv(Question, objectNo, length) {
   }
   var newStyle = 'style="list-style-type: lower-alpha;margin:0;padding: 0;margin-left:15px;"';
 
-  let correctOption = Question.lstOption.find((res)=>res.IsCorrect)
+  let correctOption = Question?.lstOption?.find((res)=>res.IsCorrect)
+
+  if(correctOption)
+  {
 
   correctOption = `<b>${correctOption.OptionSlag}</b> ${correctOption.OptionValue}`
 
@@ -182,11 +190,16 @@ function getAnswerDiv(Question, objectNo, length) {
 
   answertext = answertext.replace("$$correctOption$$", correctOption);
 
+  }else {
+    answertext = answertext.replace("$$correctOption$$", "");
+
+  }
+
   Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>/, function(match) {
     return match.replace(/style="[^"]*"/, newStyle);
   });
 
-  Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>[\s\S]*?<\/ol>/g, '');
+  // Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>[\s\S]*?<\/ol>/g, '');
 
   Question.QuestionAnswer = Question.QuestionAnswer.trim().replace(/\n\s*\n/g, '\n')
 
@@ -196,8 +209,11 @@ function getAnswerDiv(Question, objectNo, length) {
 
   // Question.QuestionAnswer = Question.QuestionAnswer.replace(`uatportal`, 'staging.portal');
   Question.QuestionAnswer = Question.QuestionAnswer.split('\\frac').join('\\dfrac')  //Question.QuestionAnswer.replaceAll(/\\frac/g, "\\dfrac");
-  const liStyles = 'font-size: 18px; font-family: verdana; line-height: 3; vertical-align: top;';
+  const liStyles = 'font-size: 14px; font-family: verdana; line-height: 1.5; vertical-align: top;';
   Question.QuestionAnswer = Question.QuestionAnswer.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
+  if(!IsOMRPaper){
+    Question.QuestionAnswer = Question.QuestionAnswer.replace(/<\/?p>/g, '');
+  }
   answertext = answertext.replace("$$answer$$", Question.QuestionAnswer);
   return answertext;
 }
@@ -561,7 +577,8 @@ const generateAnswerPDF = async (req) => {
         let answerDiv = getAnswerDiv(
           questtionlist[q].Questions[s],
           s + 1,
-          questtionlist[q].Questions.length
+          questtionlist[q].Questions.length,
+          parsedData?.data?.paperTemplateInfo?.IsOMRPaper
         );
         allquestionsDiv = allquestionsDiv + oneQuestionDiv + answerDiv;
       }
