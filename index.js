@@ -183,10 +183,14 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
 
   if(correctOption)
   {
+  
+  let optionStyle = 'style="font-size: 18px;"'
 
-  correctOption = `<b>${correctOption.OptionSlag}</b> ${correctOption.OptionValue}`
+  correctOption = `<b>${correctOption.OptionSlag}</b> <span style="font-size: 18px;">${correctOption.OptionValue}</span>`
 
   correctOption = correctOption.replace(/<\/?p>/g, '');
+
+  correctOption = correctOption.replace(/style="[^"]*"/g, optionStyle);
 
   answertext = answertext.replace("$$correctOption$$", correctOption);
 
