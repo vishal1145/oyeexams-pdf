@@ -193,6 +193,7 @@
             /* width: 94%; */
             font-size: 18px;
             display: flex;
+            flex-direction: column;
             margin-bottom: 10px;
             /* float: left; */
         }
@@ -364,6 +365,11 @@
             height: auto !important;
         }
 
+        .content-div , .content-div *{
+            font-size: 18px !important;
+            font-family: Calibri;
+        }
+
         /* .answers-block img {
             max-height: 150px;
             width: auto;
@@ -472,11 +478,11 @@
         $$watermark$$
         $$instructions$$
         <div style="border-top: 1px solid #d1dae6; padding-top: 1%; page-break-after: always; clear:both;
-            font-size: 18px;
-            font-family: verdana;
-            line-height: 1.5; /* Increase line-height for spacing */
-            vertical-align: middle; /* Adjust vertical alignment */
-          ">
+            font-size: 18px !important;
+            font-family: Calibri;
+            line-height: 1.5 !important; /* Increase line-height for spacing */
+            vertical-align: middle !important; /* Adjust vertical alignment */
+          " class="content-div">
             $$allquestionsDiv$$
         </div>
     </div>
