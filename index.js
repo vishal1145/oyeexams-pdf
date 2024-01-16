@@ -53,7 +53,7 @@ function optionDiv(OptionValue, optionSlag) {
   //  ><span>$$options$$</span>
   // </div>`
   let optionText = `<div class="optiontop" style="margin-left:15px;">
-  <span class="optionstyle">$$optionslag$$.</span>$$options$$
+  <span class="optionstyle">$$optionslag$$.&nbsp;&nbsp; </span>$$options$$
   </div>`;
   optionText = optionText.replace("$$options$$", OptionValue);
   optionText = optionText.replace("$$optionslag$$", optionSlag);
@@ -69,7 +69,7 @@ function getQuestionDiv(Question, objectNo, length) {
       <span class="answerlast">
         $$questionText$$
       </span>
-      $$options$$  
+      $$options$$ 
     </div>
   </div>
 </div>`;
