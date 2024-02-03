@@ -53,7 +53,7 @@ function optionDiv(OptionValue, optionSlag) {
   //  ><span>$$options$$</span>
   // </div>`
   let optionText = `<div class="optiontop" style="margin-left:40px;">
-  <span class="optionstyle">$$optionslag$$.&nbsp; </span>$$options$$123456
+  <span class="optionstyle">$$optionslag$$.&nbsp; </span>$$options$$
   </div>`;
   optionText = optionText.replace("$$options$$", OptionValue);
   optionText = optionText.replace("$$optionslag$$", optionSlag);
