@@ -154,14 +154,34 @@ function getMarksDivForWorksheet(Question) {
 }
 
 function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
+
   let answertext;
-  if(!IsOMRPaper){
+
+
+  let answerData = Question.lstOption.filter((item) => {
+    if (item.IsCorrect === true) {
+      return item;
+    }
+  });
+
+  let correctAnswerData;
+
+  answerData.forEach((item) => {
+    correctAnswerData = item.OptionSlag;
+  })
+
+
+  if (!IsOMRPaper) {
     answertext = `<div class="answerstyle">
-    <span class="ansstyle"> Ans: </span> $$answer$$
+    <div style="display:flex,flex-direction:row;">
+    <span class="ansstyle"> Ans: </span> ${correctAnswerData}
+    </div>
     </div>`;
-  }else if (objectNo == length) {
+  } else if (objectNo == length) {
     answertext = `<div class="answerstyle">
+    <div style="display:flex,flex-direction:row;">
     <span class="ansstyle"> Ans: </span> <span>$$correctOption$$</span><br/>
+    </div>
     <span style="display: inline-block; vertical-align: top;">$$answer$$</span>
   </div>`;
   } else {
