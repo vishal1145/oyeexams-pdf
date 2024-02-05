@@ -165,16 +165,20 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
   });
 
   let correctAnswerData;
+  let correctAnswerDetails;
 
   answerData.forEach((item) => {
     correctAnswerData = item.OptionSlag;
+    correctAnswerDetails = item.OptionValue.replace(/style="[^"]*"/g, '');
   })
 
+  
 
   if (!IsOMRPaper) {
     answertext = `<div class="answerstyle">
-    <div style="display:flex,flex-direction:row;">
-    <span class="ansstyle"> Ans: </span> ${correctAnswerData}
+    <div style="display:flex; flex-direction:row;">
+    <span class="ansstyle"> Ans: </span> 
+     <span class="ansstyle">${correctAnswerData}</span><p style="margin-left:-10px;">${correctAnswerDetails}</p>
     </div>
     </div>`;
   } else if (objectNo == length) {
@@ -230,6 +234,8 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
   Question.QuestionAnswer = Question.QuestionAnswer.replace(/<p>&nbsp;<\/p>/g, '');
 
   Question.QuestionAnswer =   Question.QuestionAnswer.replace(/<\/ol>/, '</ol></span>');
+
+
 
   // Question.QuestionAnswer = Question.QuestionAnswer.replace(`uatportal`, 'staging.portal');
   Question.QuestionAnswer = Question.QuestionAnswer.split('\\frac').join('\\dfrac')  //Question.QuestionAnswer.replaceAll(/\\frac/g, "\\dfrac");
