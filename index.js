@@ -174,14 +174,27 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
 
   
 
-  if (!IsOMRPaper) {
+   
+  
+  
+
+  if (!IsOMRPaper && Question.QuestionNatureName === 'PRACTICAL') {
+    answertext = `<div class="answerstyle">
+    <div">
+    <span class="ansstyle"> Ans: $$answer$$ </span> 
+     
+    </div>
+    </div>`;
+  }
+  else if(!IsOMRPaper && Question.QuestionNatureName === 'MULTIPLE CHOICE QUESTION') {
     answertext = `<div class="answerstyle">
     <div style="display:flex; flex-direction:row;">
     <span class="ansstyle"> Ans: </span> 
      <span class="ansstyle">${correctAnswerData}</span><p style="margin-left:-10px;">${correctAnswerDetails}</p>
     </div>
     </div>`;
-  } else if (objectNo == length) {
+
+  }else if (objectNo == length) {
     answertext = `<div class="answerstyle">
     <div style="display:flex,flex-direction:row;">
     <span class="ansstyle"> Ans: </span> <span>$$correctOption$$</span><br/>
