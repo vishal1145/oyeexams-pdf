@@ -181,7 +181,7 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
   
 
    
-  mcqDescription = Question.QuestionDescription.replace(/style="[^"]*"/g, '')
+  mcqDescription = Question.QuestionAnswer
   
 
   if (!IsOMRPaper && Question.QuestionNatureName === 'PRACTICAL') {
@@ -198,7 +198,7 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
     <span class="ansstyle"> Ans: </span> 
      <span class="ansstyle">${correctAnswerData}</span><p style="margin-left:-10px;">${correctAnswerDetails}</p>
     </div>
-    <div style="display:flex; flex-direction:column;">
+    <div>
      ${mcqDescription}
     </div>
     </div>`;
