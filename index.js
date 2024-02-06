@@ -114,7 +114,11 @@ function getQuestionForAnswerDiv(Question) {
       <span class="answerlast">
         $$questionText$$
       </span>
-      $$options$$  
+
+      <div style="display:flex; flex-direction:row; width:90% ; align-items:center; justify-content:space-between;flex-wrap: wrap;">
+      $$options$$
+      </div>
+      
     </div>
   </div>
 </div>`;
