@@ -166,16 +166,18 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
 
   let correctAnswerData;
   let correctAnswerDetails;
+  let mcqDescription;
 
   answerData.forEach((item) => {
     correctAnswerData = item.OptionSlag;
     correctAnswerDetails = item.OptionValue.replace(/style="[^"]*"/g, '');
+
   })
 
   
 
    
-  
+  mcqDescription = Question.QuestionDescription.replace(/style="[^"]*"/g, '')
   
 
   if (!IsOMRPaper && Question.QuestionNatureName === 'PRACTICAL') {
@@ -191,6 +193,9 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
     <div style="display:flex; flex-direction:row;">
     <span class="ansstyle"> Ans: </span> 
      <span class="ansstyle">${correctAnswerData}</span><p style="margin-left:-10px;">${correctAnswerDetails}</p>
+    </div>
+    <div style="display:flex; flex-direction:column;">
+     ${mcqDescription}
     </div>
     </div>`;
 
