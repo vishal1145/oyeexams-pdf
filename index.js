@@ -186,8 +186,13 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
 
   if (!IsOMRPaper && Question.QuestionNatureName === 'PRACTICAL') {
     answertext = `<div class="answerstyle">
-    <div">
-    <span class="ansstyle"> Ans: $$answer$$ </span> 
+    <div style="display:flex;flex-direction:row;">
+     <span class="ansstyle"> Ans: </span> 
+     <div style="margin-left:8px; >
+      $$answer$$ 
+     </div>
+
+
      
     </div>
     </div>`;
@@ -263,8 +268,27 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
   Question.QuestionAnswer = Question.QuestionAnswer.split('\\frac').join('\\dfrac')  //Question.QuestionAnswer.replaceAll(/\\frac/g, "\\dfrac");
   const liStyles = 'font-size: 14px; font-family: verdana; line-height: 1.5; vertical-align: top;';
   Question.QuestionAnswer = Question.QuestionAnswer.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
-  if(!IsOMRPaper){
-    Question.QuestionAnswer = Question.QuestionAnswer.replace(/<\/?p>/g, '');
+  if(!IsOMRPaper &&  Question.QuestionNatureName === 'PRACTICAL'){
+    Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>/, function(match) {
+      return match.replace(/style="[^"]*"/, newStyle);
+    });
+  
+    // Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>[\s\S]*?<\/ol>/g, '');
+  
+    Question.QuestionAnswer = Question.QuestionAnswer.trim().replace(/\n\s*\n/g, '\n')
+  
+    Question.QuestionAnswer = Question.QuestionAnswer.replace(/<p>&nbsp;<\/p>/g, '');
+  
+    Question.QuestionAnswer =   Question.QuestionAnswer.replace(/<\/ol>/, '</ol></span>');
+  
+  
+  
+    // Question.QuestionAnswer = Question.QuestionAnswer.replace(`uatportal`, 'staging.portal');
+    Question.QuestionAnswer = Question.QuestionAnswer.split('\\frac').join('\\dfrac')  //Question.QuestionAnswer.replaceAll(/\\frac/g, "\\dfrac");
+    const liStyles = 'font-size: 14px; font-family: verdana; line-height: 1.5; vertical-align: top; ';
+    Question.QuestionAnswer = Question.QuestionAnswer.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
+    answertext = answertext.replace("$$answer$$", Question.QuestionAnswer);
+    return answertext;
   }
   answertext = answertext.replace("$$answer$$", Question.QuestionAnswer);
   return answertext;
