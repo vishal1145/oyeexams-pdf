@@ -47,13 +47,13 @@ app.get("/", (req, res) => {
 // const htmlToPdf = require('./htmltopdf')
 // app.use('/convert', htmlToPdf)
 
-function optionDiv(OptionValue, optionSlag) {
-  // `<div class="optiontop">
-  //  <span class="optionstyle">$$optionslag$$</span
-  //  ><span>$$options$$</span>
-  // </div>`
-  let optionText = `<div class="optiontop" style="margin-left:40px;">
-  <span class="optionstyle">$$optionslag$$.&nbsp; </span>$$options$$
+function optionDiv(OptionValue, optionSlag , Question) {
+
+  let QuestionNumber = Question.QueIndex;
+  let marginLeftItems = QuestionNumber.toString().length === 2 ? "46px" : "40px";
+
+  let optionText = `<div class="optiontop" style="margin-left:${marginLeftItems};">
+    <span class="optionstyle">$$optionslag$$.&nbsp; </span>$$options$$
   </div>`;
   optionText = optionText.replace("$$options$$", OptionValue);
   optionText = optionText.replace("$$optionslag$$", optionSlag);
@@ -94,7 +94,7 @@ function getQuestionDiv(Question, objectNo, length) {
   const queslstArr = Question.lstOption;
   for (let j = 0; j < (queslstArr || []).length; j++) {
     options =
-      options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag);
+      options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag , Question);
   }
   text = text.replace("$$options$$", options);
   Question.QuestionDescription = Question.QuestionDescription.split('\\frac').join('\\dfrac')//Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
@@ -115,9 +115,9 @@ function getQuestionForAnswerDiv(Question) {
         $$questionText$$
       </span>
 
-      <div style="display:flex; flex-direction:row; width:90% ; align-items:center; justify-content:space-between;flex-wrap: wrap;">
+      
       $$options$$
-      </div>
+      
       
     </div>
   </div>
@@ -127,7 +127,7 @@ function getQuestionForAnswerDiv(Question) {
   const queslstArr = Question.lstOption;
   for (let j = 0; j < (queslstArr || []).length; j++) {
     options =
-      options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag);
+      options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag , Question);
   }
   options = options.split('\\frac').join('\\dfrac')
   text = text.replace("$$options$$", options);
