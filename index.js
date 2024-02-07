@@ -50,7 +50,7 @@ app.get("/", (req, res) => {
 function optionDiv(OptionValue, optionSlag , Question) {
 
   let QuestionNumber = Question.QueIndex;
-  let marginLeftItems = QuestionNumber.toString().length === 2 ? "52px" : "45px";
+  let marginLeftItems = QuestionNumber.toString().length === 2 ? "55px" : "48px";
 
   let optionText = `<div class="optiontop" style="margin-left:${marginLeftItems};">
     <span class="optionstyle">$$optionslag$$.&nbsp; </span>$$options$$
