@@ -34,7 +34,7 @@ app.use(
 
 //handle exception
 process
-  .on("unhandledRejection", (result, error) => {})
+  .on("unhandledRejection", (result, error) => { })
   .on("uncaughtException", (err) => {
     console.error(err, "Uncaught Exception thrown");
   });
@@ -47,39 +47,64 @@ app.get("/", (req, res) => {
 // const htmlToPdf = require('./htmltopdf')
 // app.use('/convert', htmlToPdf)
 
-function optionDiv(OptionValue, optionSlag , Question) {
+function optionDiv(OptionValue, optionSlag, Question) {
+
+
+  OptionValue = OptionValue.replace(/<(?!img)[^>]+>/g, '');
+
+
+  OptionValue = OptionValue.replace(/(<img[^>]+)style="[^"]*"/g, '$1');
+
+
 
   let QuestionNumber = Question.QueIndex;
   let marginLeftItems = QuestionNumber.toString().length === 2 ? "62px" : "48px";
 
-  let optionText = `<div class="optiontop" style="margin-left:${marginLeftItems};">
-    <span class="optionstyle">$$optionslag$$.&nbsp; </span>$$options$$
+  OptionValue = OptionValue.replace(/<img/g, '<img style="width: 150px; height: 150px;"');
+
+  let optionText = `<div 
+  style="margin-left:${marginLeftItems};"
+   >
+    <span>$$optionslag$$.&nbsp;</span><span style="font-size:5px;">$$options$$</span>
   </div>`;
   optionText = optionText.replace("$$options$$", OptionValue);
   optionText = optionText.replace("$$optionslag$$", optionSlag);
   return optionText;
-} //<div class="questionclass">$$queNumber$$</div>
+}
+//<div class="questionclass">$$queNumber$$</div>
 function getQuestionDiv(Question, objectNo, length) {
+  let QuestionData = "";
+  let QuestionStyleWrap;
+  let QuestionStyleWidth;
+  let DisplayOptions = Question.QuestionNatureName === 'MULTIPLE CHOICE QUESTION' ? 'flex' : 'grid';
+  let DisplayDirection = Question.QuestionNatureName === 'MULTIPLE CHOICE QUESTION' ? 'row' : 'column';
+  let displayWarp = Question.QuestionNatureName === 'MULTIPLE CHOICE QUESTION' ? 'wrap' : '';
+  QuestionStyleWrap = QuestionData.length > 200 ? 'wrap' : null;
+  QuestionStyleWidth = QuestionData.length >= 133 ? '80%' : '100%';
   let text;
+
   if (objectNo == length) {
-    text = `<div class="questiontop">
-  <div class="questionstyle">
-    <div class="questionclass">$$queNumber$$.</div>
-    <div class="questionsstyle">
-      <span class="answerlast">
-        $$questionText$$
-      </span>
-      $$options$$ 
-    </div>
-  </div>
-</div>`;
+    text = `<div>
+             <div class="questiontop">
+               <div class="questionstyle" style="display:flex; flex-direction:row;">
+                 <div class="questionclass">$$queNumber$$.</div>
+                  <div class="questionsstyle" >
+                  <p class="answerlast" style="display:flex;flex-direction:row;flex-wrap:wrap;">
+                  $$questionText$$
+                </span>
+      
+                  </div>
+                </div>
+              </div>
+              <div style="display:${DisplayOptions}; flex-direction:${DisplayDirection}; flex-wrap:${displayWarp}; ">$$options$$</div>
+            </div>`;
   } else {
     text = `<div class="questiontop">
     <div class="questionstyle">
       <div class="questionclass">$$queNumber$$.</div>
       <div class="questionsstyle">
         <span class="answerlast">
-          $$questionText$$
+          $$questionText$$12
         </span>
         $$options$$
         <h4 style="text-align: center; margin-top: 0px; margin-bottom: 0px;">
@@ -94,14 +119,22 @@ function getQuestionDiv(Question, objectNo, length) {
   const queslstArr = Question.lstOption;
   for (let j = 0; j < (queslstArr || []).length; j++) {
     options =
-      options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag , Question);
+      options + optionDiv(queslstArr[j].OptionValue, queslstArr[j].OptionSlag, Question);
   }
   text = text.replace("$$options$$", options);
-  Question.QuestionDescription = Question.QuestionDescription.split('\\frac').join('\\dfrac')//Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
-  const liStyles = 'font-size: 14px; font-family: verdana; line-height: 3; vertical-align: middle;';
+  //Question.QuestionDescription = Question.QuestionDescription.split('\\frac').join('\\dfrac')//Question.QuestionDescription.replaceAll(/\\frac/g, "\\dfrac");
+  //const liStyles = 'font-size: 14px; font-family: verdana; line-height: 3; vertical-align: middle;';
 
   // Use regex to find and replace the style attributes in <span> tags
-  Question.QuestionDescription = Question.QuestionDescription.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
+  //Question.QuestionDescription = Question.QuestionDescription.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
+   Question.QuestionDescription = Question.QuestionDescription.replace(/<(?!img)[^>]+>/g, '');
+   Question.QuestionDescription = Question.QuestionDescription.replace(/(<img[^>]+)style="[^"]*"/g, '$1');
+  //  Question.QuestionDescription = Question.QuestionDescription.replace(/<[^>]+>/g, '');
+  //  Question.QuestionDescription = Question.QuestionDescription.replace(/style="[^"]*"/g, '');
+  Question.QuestionDescription = Question.QuestionDescription.replace(/<img/g, '<img style="width: 100px; height: 100px;"')
+   Question.QuestionDescription =  Question.QuestionDescription.replace(/&nbsp;/g, ' ').replace(/\r\n/g, '');
+   QuestionData = Question.QuestionDescription ;
+  Question.QueNumber = Question.QueNumber.replace(/\s+/g, '');
   text = text.replace("$$questionText$$", Question.QuestionDescription);
   text = text.replace("$$queNumber$$", Question.QueNumber);
   return text;
@@ -141,7 +174,34 @@ function getQuestionForAnswerDiv(Question) {
 }
 
 function getMarksDiv(Question) {
-  let marktext = `<div class="marks">
+  let number = "";
+  let marginTop = "";
+
+  // if (Question.QuestionDescription.length > 200) {
+  //   number = "-20px";
+  //   marginTop = "0px";
+
+  // }
+  // else if (Question.QuestionDescription.length > 250) {
+  //   number = "-20px";
+  //   marginTop = "-100px";
+
+  // }
+  //  else if (Question.QuestionDescription.length > 150) {
+  //   number = "10px";
+  //   marginTop="0px"
+  // } else if (Question.QuestionDescription.length > 100) {
+  //   number = "80px";
+  //   marginTop="0px"
+  // } else if (Question.QuestionDescription.length > 20) {
+  //   number = "250px";
+  //   marginTop="0px";
+  // } else {
+  //   number = "0px";
+  //   marginTop="0px"
+  // }
+
+  let marktext = `<div class="marks" style="position:absolute; right:65px">
   <span class="markone">$$marks$$</span>
   <span class="mark">Marks</span>
 </div>`;
@@ -178,11 +238,11 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
 
   })
 
-  
 
-   
+
+
   mcqDescription = Question.QuestionAnswer
-  
+
 
   if (!IsOMRPaper && Question.QuestionNatureName === 'PRACTICAL') {
     answertext = `<div class="answerstyle">
@@ -197,7 +257,7 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
     </div>
     </div>`;
   }
-  else if(!IsOMRPaper && Question.QuestionNatureName === 'MULTIPLE CHOICE QUESTION') {
+  else if (!IsOMRPaper && Question.QuestionNatureName === 'MULTIPLE CHOICE QUESTION') {
     answertext = `<div class="answerstyle">
     <div style="display:flex; flex-direction:row;">
     <span class="ansstyle"> Ans: </span> 
@@ -208,7 +268,7 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
     </div>
     </div>`;
 
-  }else if (objectNo == length) {
+  } else if (objectNo == length) {
     answertext = `<div class="answerstyle">
     <div style="display:flex,flex-direction:row;">
     <span class="ansstyle"> Ans: </span> <span>$$correctOption$$</span><br/>
@@ -230,27 +290,26 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
   }
   var newStyle = 'style="list-style-type: lower-alpha;margin:0;padding: 0;margin-left:15px;"';
 
-  let correctOption = Question?.lstOption?.find((res)=>res.IsCorrect)
+  let correctOption = Question?.lstOption?.find((res) => res.IsCorrect)
 
-  if(correctOption)
-  {
-  
-  let optionStyle = 'style="font-size: 18px;"'
+  if (correctOption) {
 
-  correctOption = `<b>${correctOption.OptionSlag}</b> <span style="font-size: 18px;">${correctOption.OptionValue}</span>`
+    let optionStyle = 'style="font-size: 18px;"'
 
-  correctOption = correctOption.replace(/<\/?p>/g, '');
+    correctOption = `<b>${correctOption.OptionSlag}</b> <span style="font-size: 18px;">${correctOption.OptionValue}</span>`
 
-  correctOption = correctOption.replace(/style="[^"]*"/g, optionStyle);
+    correctOption = correctOption.replace(/<\/?p>/g, '');
 
-  answertext = answertext.replace("$$correctOption$$", correctOption);
+    correctOption = correctOption.replace(/style="[^"]*"/g, optionStyle);
 
-  }else {
+    answertext = answertext.replace("$$correctOption$$", correctOption);
+
+  } else {
     answertext = answertext.replace("$$correctOption$$", "");
 
   }
 
-  Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>/, function(match) {
+  Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>/, function (match) {
     return match.replace(/style="[^"]*"/, newStyle);
   });
 
@@ -260,7 +319,7 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
 
   Question.QuestionAnswer = Question.QuestionAnswer.replace(/<p>&nbsp;<\/p>/g, '');
 
-  Question.QuestionAnswer =   Question.QuestionAnswer.replace(/<\/ol>/, '</ol></span>');
+  Question.QuestionAnswer = Question.QuestionAnswer.replace(/<\/ol>/, '</ol></span>');
 
 
 
@@ -268,21 +327,21 @@ function getAnswerDiv(Question, objectNo, length, IsOMRPaper) {
   Question.QuestionAnswer = Question.QuestionAnswer.split('\\frac').join('\\dfrac')  //Question.QuestionAnswer.replaceAll(/\\frac/g, "\\dfrac");
   const liStyles = 'font-size: 14px; font-family: verdana; line-height: 1.5; vertical-align: top;';
   Question.QuestionAnswer = Question.QuestionAnswer.replace(/<li>([\s\S]*?)<\/li>/g, `<li style="${liStyles}">$1</li>`);
-  if(!IsOMRPaper &&  Question.QuestionNatureName === 'PRACTICAL'){
-    Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>/, function(match) {
+  if (!IsOMRPaper && Question.QuestionNatureName === 'PRACTICAL') {
+    Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>/, function (match) {
       return match.replace(/style="[^"]*"/, newStyle);
     });
-  
+
     // Question.QuestionAnswer = Question.QuestionAnswer.replace(/<ol[^>]*>[\s\S]*?<\/ol>/g, '');
-  
+
     Question.QuestionAnswer = Question.QuestionAnswer.trim().replace(/\n\s*\n/g, '\n')
-  
+
     Question.QuestionAnswer = Question.QuestionAnswer.replace(/<p>&nbsp;<\/p>/g, '');
-  
-    Question.QuestionAnswer =   Question.QuestionAnswer.replace(/<\/ol>/, '</ol></span>');
-  
-  
-  
+
+    Question.QuestionAnswer = Question.QuestionAnswer.replace(/<\/ol>/, '</ol></span>');
+
+
+
     // Question.QuestionAnswer = Question.QuestionAnswer.replace(`uatportal`, 'staging.portal');
     Question.QuestionAnswer = Question.QuestionAnswer.split('\\frac').join('\\dfrac')  //Question.QuestionAnswer.replaceAll(/\\frac/g, "\\dfrac");
     const liStyles = 'font-size: 14px; font-family: verdana; line-height: 1.5; vertical-align: top; ';
@@ -326,7 +385,7 @@ async function getAPIResponse(EAPaperTemplateID, EAExamAssignID, url, token) {
   });
 }
 
-async function getHeaderInfo(StudentID,EAPaperTemplateID, url, token) {
+async function getHeaderInfo(StudentID, EAPaperTemplateID, url, token) {
   return new Promise((resolve, reject) => {
     const config = {
       method: "post",
@@ -501,7 +560,7 @@ const getWaterMark = async (parsedHeaderData) => {
     } catch (error) {
       console.log("textCSSError", textCSS);
     }
-    
+
     let fontStyle = "";
     let fontSize = 24;
     let textDecoration = "";
@@ -561,7 +620,7 @@ const generateAnswerPDF = async (req) => {
       url,
       token
     );
-    const headerData = await getHeaderInfo(StudentID,EAPaperTemplateID, url, token);
+    const headerData = await getHeaderInfo(StudentID, EAPaperTemplateID, url, token);
     const templateInfoData = await getPaperTemplateInfo(
       EAPaperTemplateID,
       IsOMRPaper,
@@ -577,7 +636,7 @@ const generateAnswerPDF = async (req) => {
       EAPaperTemplateID,
       url,
       token
-    ); 
+    );
     let content;
     if (paperType == 4) {
       content = fs.readFileSync(`${__dirname}/indexForWorksheet.html`, {
@@ -592,8 +651,7 @@ const generateAnswerPDF = async (req) => {
     let parsedHeaderData = JSON.parse(headerData);
     let HeaderData = parsedHeaderData.data
 
-    if(!HeaderData||!HeaderData.PaperHeaderAddress||!HeaderData.PaperHeaderImage||!HeaderData.PaperHeaderName||(HeaderData.WaterMarkUrl==='undefined' && HeaderData.IS_TEXT_FILE ===0))
-    {
+    if (!HeaderData || !HeaderData.PaperHeaderAddress || !HeaderData.PaperHeaderImage || !HeaderData.PaperHeaderName || (HeaderData.WaterMarkUrl === 'undefined' && HeaderData.IS_TEXT_FILE === 0)) {
       parsedHeaderData = req.body.paperHeaderData
     }
     const parsedTemplateInfoData = JSON.parse(templateInfoData);
@@ -616,14 +674,15 @@ const generateAnswerPDF = async (req) => {
         let questionDiv = getQuestionForAnswerDiv(
           questtionlist[q].Questions[s]
         );
-        let marksDiv; 
-        
+        let marksDiv;
+
         if (paperType == 4) {
           marksDiv = getMarksDivForWorksheet(questtionlist[q].Questions[s]);
-        } else {
+        }
+        else {
           marksDiv = getMarksDiv(questtionlist[q].Questions[s]);
         }
-        
+
         //oneQuestionDiv = "<div class='qmarks' style='margin-bottom:20px'>" + questionDiv + marksDiv + "</div>";
         if (
           questtionlist[q].Questions.length > s + 1 ||
@@ -812,7 +871,7 @@ const generateAnswerPDF = async (req) => {
         // executablePath: "/usr/bin/chromium",
         // executablePath: '/usr/bin/google-chrome-stable',
         // executablePath: '/usr/bin/google-chrome',
-        executablePath: "/usr/bin/chromium-browser",        
+        executablePath: "/usr/bin/chromium-browser",
         // headless: true,
         // args: ['--use-gl=egl'],
         // defaultViewport: {
@@ -920,7 +979,7 @@ const generateQuestionPDF = async (req) => {
       url,
       token
     );
-    const headerData = await getHeaderInfo(StudentID,EAPaperTemplateID, url, token);
+    const headerData = await getHeaderInfo(StudentID, EAPaperTemplateID, url, token);
     const templateInfoData = await getPaperTemplateInfo(
       EAPaperTemplateID,
       IsOMRPaper,
@@ -950,11 +1009,10 @@ const generateQuestionPDF = async (req) => {
     const parsedData = JSON.parse(data);
     let parsedHeaderData = JSON.parse(headerData);
     let HeaderData = parsedHeaderData.data
-    if(!HeaderData||!HeaderData.PaperHeaderAddress||!HeaderData.PaperHeaderImage||!HeaderData.PaperHeaderName||(HeaderData.WaterMarkUrl==='undefined' && HeaderData.IS_TEXT_FILE ===0))
-    {
+    if (!HeaderData || !HeaderData.PaperHeaderAddress || !HeaderData.PaperHeaderImage || !HeaderData.PaperHeaderName || (HeaderData.WaterMarkUrl === 'undefined' && HeaderData.IS_TEXT_FILE === 0)) {
       parsedHeaderData = req.body.paperHeaderData
     }
-    
+
     const parsedTemplateInfoData = JSON.parse(templateInfoData);
     const questtionlist = parsedData.data.QuestionInstruction;
     const paperTemplateInfo = parsedData.data.paperTemplateInfo;
@@ -974,14 +1032,15 @@ const generateQuestionPDF = async (req) => {
           s + 1,
           questtionlist[q].Questions.length
         );
-        let marksDiv; 
-        
+        let marksDiv;
+
         if (paperType == 4) {
           marksDiv = getMarksDivForWorksheet(questtionlist[q].Questions[s]);
-        } else {
+        }
+        else {
           marksDiv = getMarksDiv(questtionlist[q].Questions[s]);
         }
-        
+
         if (
           questtionlist[q].Questions.length > s + 1 ||
           questtionlist[q].Questions.length == 1
@@ -997,7 +1056,7 @@ const generateQuestionPDF = async (req) => {
             questionDiv +
             "</div>";
         }
-        
+
         sectionDataArr.map((a) => {
           if (a.StartId === q && s === 0) {
             oneQuestionDiv =
@@ -1008,7 +1067,7 @@ const generateQuestionPDF = async (req) => {
               "</div>";
           }
         });
-        
+
         allquestionsDiv = allquestionsDiv + oneQuestionDiv;
       }
     }
@@ -1258,7 +1317,7 @@ let removeDataCronJob = new CronJob("42 18 * * *", async function () {
     const EXTENSION = '.pdf';
 
     const targetFiles = files.filter(file => {
-      return (path.extname(file).toLowerCase() === EXTENSION) || (path.extname(file).toLowerCase() === ".html" && file != "index.html" && file != "indexForWorksheet.html"  && file != "abc.html" && file != "test.html")
+      return (path.extname(file).toLowerCase() === EXTENSION) || (path.extname(file).toLowerCase() === ".html" && file != "index.html" && file != "indexForWorksheet.html" && file != "abc.html" && file != "test.html")
     });
     for (let i = 0; i < targetFiles.length; i++) {
       let { birthtime } = fs.statSync(targetFiles[i])
